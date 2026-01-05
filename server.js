@@ -2,30 +2,25 @@
  * Servidor de Automação - Organizador de Arquivos EPUB pCloud
  * 
  * Este servidor:
- * 1. Inicia o fluxo OAuth
- * 2. Recebe o callback com o código
- * 3. Troca o código pelo Access Token
- * 4. Executa a organização dos arquivos
+ * 1. Faz login direto via API pCloud (email/senha)
+ * 2. Obtém auth token com permissões completas
+ * 3. Executa a organização dos arquivos
  */
 
 const express = require('express');
 const axios = require('axios');
 
 // ============================================================
-// CONFIGURAÇÃO - CREDENCIAIS DO APP pCloud
+// CONFIGURAÇÃO
 // ============================================================
-const CLIENT_ID = 'MTXhjRNV8hH';
-const CLIENT_SECRET = 'K7Y1fmFLMXm6dtbgrtUSO5y8hFjy';
-const REDIRECT_URI = 'https://geral-epub-script.r954jc.easypanel.host/callback';
-
-// Configurações gerais
 const BASE_URL = 'https://api.pcloud.com';
 const SOURCE_FOLDER_ID = 27008662289;
 const BATCH_SIZE = 200;
 const WRITE_DELAY = 300;
 
-// Armazena o token em memória (em produção, use banco de dados)
-let accessToken = null;
+// Armazena o token em memória
+let authToken = null;
+let userEmail = null;
 let isProcessing = false;
 let lastResults = null;
 
@@ -185,20 +180,46 @@ function categorizeFile(filename) {
     return bestCategory;
 }
 
-function getHeaders() {
-    return {
-        'Authorization': `Bearer ${accessToken}`
-    };
-}
-
 // ============================================================
 // FUNÇÕES DA API pCloud
 // ============================================================
 
+async function loginPCloud(email, password) {
+    // Primeiro, tenta login na API dos EUA
+    let response = await axios.get(`${BASE_URL}/userinfo`, {
+        params: {
+            getauth: 1,
+            logout: 1,
+            username: email,
+            password: password
+        }
+    });
+
+    // Se erro 2000, tenta API da Europa
+    if (response.data.result === 2000) {
+        response = await axios.get('https://eapi.pcloud.com/userinfo', {
+            params: {
+                getauth: 1,
+                logout: 1,
+                username: email,
+                password: password
+            }
+        });
+    }
+
+    if (response.data.result !== 0) {
+        throw new Error(response.data.error || `Erro de login: ${response.data.result}`);
+    }
+
+    return response.data.auth;
+}
+
 async function listFolder(folderId) {
     const response = await axios.get(`${BASE_URL}/listfolder`, {
-        params: { folderid: folderId },
-        headers: getHeaders()
+        params: {
+            folderid: folderId,
+            auth: authToken
+        }
     });
 
     if (response.data.result !== 0) {
@@ -212,9 +233,9 @@ async function createFolderIfNotExists(parentFolderId, folderName) {
     const response = await axios.get(`${BASE_URL}/createfolderifnotexists`, {
         params: {
             folderid: parentFolderId,
-            name: folderName
-        },
-        headers: getHeaders()
+            name: folderName,
+            auth: authToken
+        }
     });
 
     if (response.data.result !== 0) {
@@ -225,7 +246,10 @@ async function createFolderIfNotExists(parentFolderId, folderName) {
 }
 
 async function renameFile(fileId, options = {}) {
-    const params = { fileid: fileId };
+    const params = {
+        fileid: fileId,
+        auth: authToken
+    };
 
     if (options.tofolderid) {
         params.tofolderid = options.tofolderid;
@@ -235,8 +259,7 @@ async function renameFile(fileId, options = {}) {
     }
 
     const response = await axios.get(`${BASE_URL}/renamefile`, {
-        params,
-        headers: getHeaders()
+        params
     });
 
     if (response.data.result !== 0) {
@@ -387,10 +410,11 @@ async function organizeEpubFiles() {
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Middleware para parsing de formulário
+app.use(express.urlencoded({ extended: true }));
+
 // Página inicial
 app.get('/', (req, res) => {
-    const authUrl = `https://my.pcloud.com/oauth2/authorize?client_id=${CLIENT_ID}&response_type=code&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`;
-
     let html = `
     <!DOCTYPE html>
     <html lang="pt-BR">
@@ -409,6 +433,7 @@ app.get('/', (req, res) => {
         }
         .container { max-width: 800px; margin: 0 auto; }
         h1 { text-align: center; margin-bottom: 30px; color: #00d9ff; }
+        h2 { margin-bottom: 20px; }
         .card {
           background: rgba(255,255,255,0.1);
           border-radius: 16px;
@@ -431,6 +456,7 @@ app.get('/', (req, res) => {
         }
         .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,217,255,0.3); }
         .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .btn-danger { background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%); }
         .status { 
           padding: 15px; 
           border-radius: 8px; 
@@ -439,6 +465,21 @@ app.get('/', (req, res) => {
         .status.success { background: rgba(0, 255, 136, 0.2); border: 1px solid #00ff88; }
         .status.error { background: rgba(255, 68, 68, 0.2); border: 1px solid #ff4444; }
         .status.info { background: rgba(0, 217, 255, 0.2); border: 1px solid #00d9ff; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; color: #00d9ff; }
+        .form-group input {
+          width: 100%;
+          padding: 12px 15px;
+          border: 1px solid rgba(255,255,255,0.2);
+          border-radius: 8px;
+          background: rgba(0,0,0,0.3);
+          color: #fff;
+          font-size: 16px;
+        }
+        .form-group input:focus {
+          outline: none;
+          border-color: #00d9ff;
+        }
         table { width: 100%; border-collapse: collapse; margin: 20px 0; }
         th, td { padding: 12px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
         th { color: #00d9ff; }
@@ -452,6 +493,7 @@ app.get('/', (req, res) => {
           font-size: 12px;
           white-space: pre-wrap;
         }
+        .user-info { color: #00ff88; font-size: 14px; margin-top: 10px; }
       </style>
     </head>
     <body>
@@ -462,20 +504,32 @@ app.get('/', (req, res) => {
           <h2>Status da Conexão</h2>
   `;
 
-    if (accessToken) {
+    if (authToken) {
         html += `
           <div class="status success">✅ Conectado ao pCloud</div>
+          <p class="user-info">Logado como: <strong>${userEmail}</strong></p>
           <p style="margin: 15px 0;">Token ativo. Você pode executar a organização dos arquivos.</p>
           <a href="/run" class="btn" ${isProcessing ? 'disabled' : ''}>
             ${isProcessing ? '⏳ Processando...' : '🚀 Executar Organização'}
           </a>
-          <a href="/logout" class="btn" style="background: #ff4444; margin-left: 10px;">Desconectar</a>
+          <a href="/logout" class="btn btn-danger" style="margin-left: 10px;">Desconectar</a>
     `;
     } else {
         html += `
           <div class="status info">🔌 Não conectado</div>
-          <p style="margin: 15px 0;">Clique no botão abaixo para autorizar o acesso ao pCloud.</p>
-          <a href="${authUrl}" class="btn">🔐 Conectar ao pCloud</a>
+          <p style="margin: 15px 0;">Faça login com suas credenciais do pCloud:</p>
+          
+          <form action="/login" method="POST">
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" id="email" name="email" required placeholder="seu@email.com">
+            </div>
+            <div class="form-group">
+              <label for="password">Senha:</label>
+              <input type="password" id="password" name="password" required placeholder="Sua senha do pCloud">
+            </div>
+            <button type="submit" class="btn">🔐 Entrar</button>
+          </form>
     `;
     }
 
@@ -528,57 +582,50 @@ app.get('/', (req, res) => {
     res.send(html);
 });
 
-// Callback OAuth
-app.get('/callback', async (req, res) => {
-    const { code, error } = req.query;
+// Login
+app.post('/login', async (req, res) => {
+    const { email, password } = req.body;
 
-    if (error) {
+    if (!email || !password) {
         return res.send(`
-      <h1>Erro na autorização</h1>
-      <p>${error}</p>
-      <a href="/">Voltar</a>
-    `);
-    }
-
-    if (!code) {
-        return res.send(`
-      <h1>Código não recebido</h1>
+      <h1>Erro</h1>
+      <p>Email e senha são obrigatórios.</p>
       <a href="/">Voltar</a>
     `);
     }
 
     try {
-        // Trocar código por token
-        const tokenResponse = await axios.get(`${BASE_URL}/oauth2_token`, {
-            params: {
-                client_id: CLIENT_ID,
-                client_secret: CLIENT_SECRET,
-                code: code
-            }
-        });
-
-        if (tokenResponse.data.error) {
-            throw new Error(tokenResponse.data.error);
-        }
-
-        accessToken = tokenResponse.data.access_token;
-        console.log('✅ Token obtido com sucesso!');
-
+        authToken = await loginPCloud(email, password);
+        userEmail = email;
+        console.log('✅ Login realizado com sucesso!');
         res.redirect('/');
-
     } catch (error) {
-        console.error('Erro ao obter token:', error.message);
+        console.error('Erro no login:', error.message);
         res.send(`
-      <h1>Erro ao obter token</h1>
-      <p>${error.message}</p>
-      <a href="/">Voltar</a>
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          body { font-family: sans-serif; padding: 40px; background: #1a1a2e; color: #fff; }
+          .error { background: rgba(255,68,68,0.2); border: 1px solid #ff4444; padding: 20px; border-radius: 8px; }
+          a { color: #00d9ff; }
+        </style>
+      </head>
+      <body>
+        <h1>❌ Erro no Login</h1>
+        <div class="error">
+          <p>${error.message}</p>
+        </div>
+        <p style="margin-top: 20px;"><a href="/">← Voltar e tentar novamente</a></p>
+      </body>
+      </html>
     `);
     }
 });
 
 // Executar organização
 app.get('/run', async (req, res) => {
-    if (!accessToken) {
+    if (!authToken) {
         return res.redirect('/');
     }
 
@@ -608,18 +655,18 @@ app.get('/run', async (req, res) => {
 
 // Logout
 app.get('/logout', (req, res) => {
-    accessToken = null;
+    authToken = null;
+    userEmail = null;
     lastResults = null;
     res.redirect('/');
 });
 
 // Health check
 app.get('/health', (req, res) => {
-    res.json({ status: 'ok', connected: !!accessToken });
+    res.json({ status: 'ok', connected: !!authToken });
 });
 
 // Iniciar servidor
 app.listen(PORT, () => {
     console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);
-    console.log(`📌 Callback configurado: ${REDIRECT_URI}`);
 });
