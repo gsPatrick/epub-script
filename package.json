@@ -2,9 +2,10 @@
   "name": "pcloud-epub-organizer",
   "version": "1.0.0",
   "description": "Script de automação para organizar arquivos EPUB no pCloud",
-  "main": "organize-epub.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node organize-epub.js"
+    "start": "node server.js",
+    "local": "node organize-epub.js"
   },
   "keywords": [
     "pcloud",
@@ -15,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.6.0"
+    "axios": "^1.6.0",
+    "express": "^4.18.2"
   }
 }
