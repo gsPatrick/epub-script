@@ -404,6 +404,72 @@ async function organizeEpubFiles() {
 }
 
 // ============================================================
+// FUNÇÃO DE ANÁLISE - GERA MARKDOWN
+// ============================================================
+
+async function analyzeAllFiles() {
+    console.log('Analisando todos os arquivos...');
+
+    const folderData = await listFolder(SOURCE_FOLDER_ID);
+    const allContents = folderData.contents || [];
+
+    const epubFiles = allContents.filter(item =>
+        !item.isfolder && item.name.toLowerCase().endsWith('.epub')
+    );
+
+    // Gerar Markdown
+    let markdown = `# Análise de Arquivos EPUB para Classificação\n\n`;
+    markdown += `**Total de arquivos:** ${epubFiles.length}\n\n`;
+    markdown += `**Data da análise:** ${new Date().toISOString()}\n\n`;
+    markdown += `---\n\n`;
+    markdown += `## Instruções para a IA\n\n`;
+    markdown += `Analise a lista de arquivos EPUB abaixo e classifique cada um em UMA das seguintes categorias:\n\n`;
+    markdown += `1. Artes, Cinema e Fotografia\n`;
+    markdown += `2. Autoajuda\n`;
+    markdown += `3. Bebês e Crianças\n`;
+    markdown += `4. Biografias e Histórias Reais\n`;
+    markdown += `5. Ciências e Engenharia\n`;
+    markdown += `6. Computação, Informática e Mídias Digitais\n`;
+    markdown += `7. Culinária e Gastronomia\n`;
+    markdown += `8. Direito\n`;
+    markdown += `9. Educação, Referência e Didáticos\n`;
+    markdown += `10. Esportes, Lazer e Viagens\n`;
+    markdown += `11. Fantasia, Horror e Ficção Científica\n`;
+    markdown += `12. HQs, Mangás e Graphic Novels\n`;
+    markdown += `13. Inglês e Outras Línguas\n`;
+    markdown += `14. Jovem Adulto\n`;
+    markdown += `15. Literatura e Ficção\n`;
+    markdown += `16. Negócios e Economia\n`;
+    markdown += `17. Religião e Espiritualidade\n`;
+    markdown += `18. Romance\n`;
+    markdown += `19. Saúde, Emagrecimento e Bem-Estar\n`;
+    markdown += `20. Sexualidade e Relacionamentos\n`;
+    markdown += `21. Sociologia e Ciências Sociais\n`;
+    markdown += `22. Suspense, Policial e Thriller\n`;
+    markdown += `23. Outros\n\n`;
+    markdown += `**Retorne um JSON** no formato:\n`;
+    markdown += `\`\`\`json\n`;
+    markdown += `{\n`;
+    markdown += `  "Nome do Arquivo.epub": "Categoria",\n`;
+    markdown += `  ...\n`;
+    markdown += `}\n`;
+    markdown += `\`\`\`\n\n`;
+    markdown += `---\n\n`;
+    markdown += `## Lista de Arquivos (${epubFiles.length} arquivos)\n\n`;
+
+    // Listar todos os arquivos numerados
+    epubFiles.forEach((file, index) => {
+        markdown += `${index + 1}. ${file.name}\n`;
+    });
+
+    return {
+        markdown,
+        totalFiles: epubFiles.length,
+        files: epubFiles.map(f => ({ name: f.name, fileid: f.fileid, size: f.size }))
+    };
+}
+
+// ============================================================
 // SERVIDOR EXPRESS
 // ============================================================
 
@@ -509,10 +575,15 @@ app.get('/', (req, res) => {
           <div class="status success">✅ Conectado ao pCloud</div>
           <p class="user-info">Logado como: <strong>${userEmail}</strong></p>
           <p style="margin: 15px 0;">Token ativo. Você pode executar a organização dos arquivos.</p>
-          <a href="/run" class="btn" ${isProcessing ? 'disabled' : ''}>
-            ${isProcessing ? '⏳ Processando...' : '🚀 Executar Organização'}
-          </a>
-          <a href="/logout" class="btn btn-danger" style="margin-left: 10px;">Desconectar</a>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px;">
+            <a href="/run" class="btn" ${isProcessing ? 'disabled' : ''}>
+              ${isProcessing ? '⏳ Processando...' : '🚀 Executar Organização'}
+            </a>
+            <a href="/analyze" class="btn" style="background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);">
+              📊 Gerar Análise (Markdown)
+            </a>
+            <a href="/logout" class="btn btn-danger">Desconectar</a>
+          </div>
     `;
     } else {
         html += `
@@ -650,6 +721,131 @@ app.get('/run', async (req, res) => {
       <p>${error.message}</p>
       <a href="/">Voltar</a>
     `);
+    }
+});
+
+// Analisar arquivos - gera Markdown
+app.get('/analyze', async (req, res) => {
+    if (!authToken) {
+        return res.redirect('/');
+    }
+
+    try {
+        const analysis = await analyzeAllFiles();
+
+        res.send(`
+      <!DOCTYPE html>
+      <html lang="pt-BR">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Análise - Organizador EPUB</title>
+        <style>
+          * { box-sizing: border-box; margin: 0; padding: 0; }
+          body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #fff;
+            padding: 20px;
+          }
+          .container { max-width: 1000px; margin: 0 auto; }
+          h1 { text-align: center; margin-bottom: 30px; color: #00d9ff; }
+          .card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+          }
+          .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #00d9ff 0%, #0077ff 100%);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 10px;
+          }
+          .btn:hover { opacity: 0.9; }
+          .btn-copy { background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); }
+          .btn-download { background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%); }
+          .markdown-box {
+            background: #0a0a0f;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+            max-height: 500px;
+            overflow-y: auto;
+            border: 1px solid rgba(255,255,255,0.1);
+          }
+          .stats { color: #00ff88; margin-bottom: 20px; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <h1>📊 Análise de Arquivos EPUB</h1>
+          
+          <div class="card">
+            <h2>Estatísticas</h2>
+            <p class="stats">Total de arquivos EPUB encontrados: <strong>${analysis.totalFiles}</strong></p>
+            
+            <h2 style="margin-top: 20px;">Ações</h2>
+            <p style="margin: 15px 0;">Copie o Markdown abaixo e cole em uma IA (ChatGPT, Claude, Gemini) para classificar os arquivos:</p>
+            
+            <button class="btn btn-copy" onclick="copyMarkdown()">📋 Copiar Markdown</button>
+            <a href="/analyze/download" class="btn btn-download">⬇️ Baixar como .md</a>
+            <a href="/" class="btn">← Voltar</a>
+            
+            <h2 style="margin-top: 30px;">Markdown Gerado</h2>
+            <div class="markdown-box" id="markdown-content">${analysis.markdown.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+          </div>
+        </div>
+        
+        <script>
+          function copyMarkdown() {
+            const content = document.getElementById('markdown-content').innerText;
+            navigator.clipboard.writeText(content).then(() => {
+              alert('Markdown copiado para a área de transferência!');
+            }).catch(err => {
+              console.error('Erro ao copiar:', err);
+              alert('Erro ao copiar. Por favor, selecione manualmente e copie.');
+            });
+          }
+        </script>
+      </body>
+      </html>
+        `);
+    } catch (error) {
+        res.send(`
+      <h1>Erro durante análise</h1>
+      <p>${error.message}</p>
+      <a href="/">Voltar</a>
+        `);
+    }
+});
+
+// Download do Markdown
+app.get('/analyze/download', async (req, res) => {
+    if (!authToken) {
+        return res.redirect('/');
+    }
+
+    try {
+        const analysis = await analyzeAllFiles();
+
+        res.setHeader('Content-Type', 'text/markdown');
+        res.setHeader('Content-Disposition', 'attachment; filename="analise-epub.md"');
+        res.send(analysis.markdown);
+    } catch (error) {
+        res.status(500).send('Erro ao gerar arquivo');
     }
 });
 
