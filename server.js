@@ -28,112 +28,112 @@ let lastResults = null;
 // MAPEAMENTO DE CATEGORIAS
 // ============================================================
 const CATEGORY_MAPPING = {
-    "Artes, Cinema e Fotografia": [
-        "arte", "cinema", "fotografia", "pintura", "escultura",
-        "musica", "teatro", "danca", "filme", "diretor"
-    ],
+  "Artes, Cinema e Fotografia": [
+    "arte", "cinema", "fotografia", "pintura", "escultura",
+    "musica", "teatro", "danca", "filme", "diretor"
+  ],
 
-    "Autoajuda": [
-        "autoajuda", "motivacao", "superacao", "habitos", "sucesso",
-        "produtividade", "mindset", "crescimento", "desenvolvimento", "inspiracao"
-    ],
+  "Autoajuda": [
+    "autoajuda", "motivacao", "superacao", "habitos", "sucesso",
+    "produtividade", "mindset", "crescimento", "desenvolvimento", "inspiracao"
+  ],
 
-    "Bebês e Crianças": [
-        "bebe", "crianca", "infantil", "pediatria", "maternidade",
-        "gravidez", "educacao infantil", "puericultura", "amamentacao", "desenvolvimento infantil"
-    ],
+  "Bebês e Crianças": [
+    "bebe", "crianca", "infantil", "pediatria", "maternidade",
+    "gravidez", "educacao infantil", "puericultura", "amamentacao", "desenvolvimento infantil"
+  ],
 
-    "Biografias e Histórias Reais": [
-        "biografia", "autobiografia", "memorias", "historia real", "vida",
-        "trajetoria", "testemunho", "relato", "historia verdadeira", "perfil"
-    ],
+  "Biografias e Histórias Reais": [
+    "biografia", "autobiografia", "memorias", "historia real", "vida",
+    "trajetoria", "testemunho", "relato", "historia verdadeira", "perfil"
+  ],
 
-    "Ciências e Engenharia": [
-        "ciencia", "engenharia", "fisica", "quimica", "biologia",
-        "matematica", "tecnologia", "pesquisa", "experimento", "astronomia"
-    ],
+  "Ciências e Engenharia": [
+    "ciencia", "engenharia", "fisica", "quimica", "biologia",
+    "matematica", "tecnologia", "pesquisa", "experimento", "astronomia"
+  ],
 
-    "Computação, Informática e Mídias Digitais": [
-        "programacao", "software", "computador", "internet", "digital",
-        "codigo", "algoritmo", "desenvolvimento", "web", "tecnologia da informacao"
-    ],
+  "Computação, Informática e Mídias Digitais": [
+    "programacao", "software", "computador", "internet", "digital",
+    "codigo", "algoritmo", "desenvolvimento", "web", "tecnologia da informacao"
+  ],
 
-    "Culinária e Gastronomia": [
-        "culinaria", "receita", "gastronomia", "cozinha", "chef",
-        "alimento", "comida", "prato", "ingrediente", "sabor"
-    ],
+  "Culinária e Gastronomia": [
+    "culinaria", "receita", "gastronomia", "cozinha", "chef",
+    "alimento", "comida", "prato", "ingrediente", "sabor"
+  ],
 
-    "Direito": [
-        "direito", "lei", "juridico", "advocacia", "justica",
-        "tribunal", "codigo", "constitucional", "penal", "civil"
-    ],
+  "Direito": [
+    "direito", "lei", "juridico", "advocacia", "justica",
+    "tribunal", "codigo", "constitucional", "penal", "civil"
+  ],
 
-    "Educação, Referência e Didáticos": [
-        "educacao", "ensino", "didatico", "pedagogia", "aprendizagem",
-        "escola", "professor", "curso", "apostila", "guia"
-    ],
+  "Educação, Referência e Didáticos": [
+    "educacao", "ensino", "didatico", "pedagogia", "aprendizagem",
+    "escola", "professor", "curso", "apostila", "guia"
+  ],
 
-    "Esportes, Lazer e Viagens": [
-        "esporte", "viagem", "turismo", "aventura", "lazer",
-        "futebol", "corrida", "destino", "guia de viagem", "fitness"
-    ],
+  "Esportes, Lazer e Viagens": [
+    "esporte", "viagem", "turismo", "aventura", "lazer",
+    "futebol", "corrida", "destino", "guia de viagem", "fitness"
+  ],
 
-    "Fantasia, Horror e Ficção Científica": [
-        "fantasia", "magia", "dragao", "elfo", "sci-fi",
-        "ficcao cientifica", "horror", "terror", "monstro", "espacial"
-    ],
+  "Fantasia, Horror e Ficção Científica": [
+    "fantasia", "magia", "dragao", "elfo", "sci-fi",
+    "ficcao cientifica", "horror", "terror", "monstro", "espacial"
+  ],
 
-    "HQs, Mangás e Graphic Novels": [
-        "hq", "quadrinho", "manga", "comic", "graphic novel",
-        "gibi", "heroi", "super-heroi", "anime", "marvel"
-    ],
+  "HQs, Mangás e Graphic Novels": [
+    "hq", "quadrinho", "manga", "comic", "graphic novel",
+    "gibi", "heroi", "super-heroi", "anime", "marvel"
+  ],
 
-    "Inglês e Outras Línguas": [
-        "ingles", "idioma", "lingua", "traducao", "gramatica",
-        "vocabulario", "conversacao", "fluencia", "language", "dictionary"
-    ],
+  "Inglês e Outras Línguas": [
+    "ingles", "idioma", "lingua", "traducao", "gramatica",
+    "vocabulario", "conversacao", "fluencia", "language", "dictionary"
+  ],
 
-    "Jovem Adulto": [
-        "jovem adulto", "young adult", "adolescente", "teen", "juventude",
-        "coming of age", "distopia jovem", "romance jovem", "ya", "novo adulto"
-    ],
+  "Jovem Adulto": [
+    "jovem adulto", "young adult", "adolescente", "teen", "juventude",
+    "coming of age", "distopia jovem", "romance jovem", "ya", "novo adulto"
+  ],
 
-    "Literatura e Ficção": [
-        "romance", "ficcao", "literatura", "conto", "novela",
-        "prosa", "narrativa", "classico", "contemporaneo", "historia"
-    ],
+  "Literatura e Ficção": [
+    "romance", "ficcao", "literatura", "conto", "novela",
+    "prosa", "narrativa", "classico", "contemporaneo", "historia"
+  ],
 
-    "Negócios e Economia": [
-        "negocios", "economia", "empresarial", "gestao", "marketing",
-        "financas", "empreendedorismo", "administracao", "mercado", "investimento"
-    ],
+  "Negócios e Economia": [
+    "negocios", "economia", "empresarial", "gestao", "marketing",
+    "financas", "empreendedorismo", "administracao", "mercado", "investimento"
+  ],
 
-    "Religião e Espiritualidade": [
-        "religiao", "fe", "deus", "espiritualidade", "biblia",
-        "igreja", "oracao", "meditacao", "espiritual", "sagrado"
-    ],
+  "Religião e Espiritualidade": [
+    "religiao", "fe", "deus", "espiritualidade", "biblia",
+    "igreja", "oracao", "meditacao", "espiritual", "sagrado"
+  ],
 
-    "Saúde, Emagrecimento e Bem-Estar": [
-        "saude", "emagrecimento", "dieta", "bem-estar", "nutricao",
-        "exercicio", "corpo", "medicina", "tratamento", "cura"
-    ],
+  "Saúde, Emagrecimento e Bem-Estar": [
+    "saude", "emagrecimento", "dieta", "bem-estar", "nutricao",
+    "exercicio", "corpo", "medicina", "tratamento", "cura"
+  ],
 
-    "Sexualidade e Relacionamentos": [
-        "sexo", "relacionamento", "amor", "casal", "intimidade",
-        "namoro", "casamento", "paixao", "sexualidade", "parceiro"
-    ],
+  "Sexualidade e Relacionamentos": [
+    "sexo", "relacionamento", "amor", "casal", "intimidade",
+    "namoro", "casamento", "paixao", "sexualidade", "parceiro"
+  ],
 
-    "Sociologia e Ciências Sociais": [
-        "sociologia", "sociedade", "social", "antropologia", "cultura",
-        "politica", "filosofia", "historia", "psicologia social", "comportamento"
-    ],
+  "Sociologia e Ciências Sociais": [
+    "sociologia", "sociedade", "social", "antropologia", "cultura",
+    "politica", "filosofia", "historia", "psicologia social", "comportamento"
+  ],
 
-    "Suspense, Policial e Thriller": [
-        "suspense", "thriller", "policial", "crime", "detetive",
-        "investigacao", "misterio", "assassinato", "noir", "acao"
-    ],
+  "Suspense, Policial e Thriller": [
+    "suspense", "thriller", "policial", "crime", "detetive",
+    "investigacao", "misterio", "assassinato", "noir", "acao"
+  ],
 
-    "Outros": []
+  "Outros": []
 };
 
 // ============================================================
@@ -143,41 +143,41 @@ const CATEGORY_MAPPING = {
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 function normalizeString(str) {
-    return str
-        .toLowerCase()
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .replace(/[^a-z0-9\s]/g, ' ');
+  return str
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9\s]/g, ' ');
 }
 
 function categorizeFile(filename) {
-    const normalized = normalizeString(filename);
+  const normalized = normalizeString(filename);
 
-    let bestCategory = 'Outros';
-    let maxMatches = 0;
+  let bestCategory = 'Outros';
+  let maxMatches = 0;
 
-    for (const [category, keywords] of Object.entries(CATEGORY_MAPPING)) {
-        if (category === 'Outros') continue;
+  for (const [category, keywords] of Object.entries(CATEGORY_MAPPING)) {
+    if (category === 'Outros') continue;
 
-        let matches = 0;
-        for (const keyword of keywords) {
-            const normalizedKeyword = normalizeString(keyword);
-            if (normalized.includes(normalizedKeyword)) {
-                matches++;
-            }
-        }
-
-        if (matches > maxMatches) {
-            maxMatches = matches;
-            bestCategory = category;
-        } else if (matches === maxMatches && matches > 0) {
-            if (category < bestCategory) {
-                bestCategory = category;
-            }
-        }
+    let matches = 0;
+    for (const keyword of keywords) {
+      const normalizedKeyword = normalizeString(keyword);
+      if (normalized.includes(normalizedKeyword)) {
+        matches++;
+      }
     }
 
-    return bestCategory;
+    if (matches > maxMatches) {
+      maxMatches = matches;
+      bestCategory = category;
+    } else if (matches === maxMatches && matches > 0) {
+      if (category < bestCategory) {
+        bestCategory = category;
+      }
+    }
+  }
+
+  return bestCategory;
 }
 
 // ============================================================
@@ -185,88 +185,88 @@ function categorizeFile(filename) {
 // ============================================================
 
 async function loginPCloud(email, password) {
-    // Primeiro, tenta login na API dos EUA
-    let response = await axios.get(`${BASE_URL}/userinfo`, {
-        params: {
-            getauth: 1,
-            logout: 1,
-            username: email,
-            password: password
-        }
+  // Primeiro, tenta login na API dos EUA
+  let response = await axios.get(`${BASE_URL}/userinfo`, {
+    params: {
+      getauth: 1,
+      logout: 1,
+      username: email,
+      password: password
+    }
+  });
+
+  // Se erro 2000, tenta API da Europa
+  if (response.data.result === 2000) {
+    response = await axios.get('https://eapi.pcloud.com/userinfo', {
+      params: {
+        getauth: 1,
+        logout: 1,
+        username: email,
+        password: password
+      }
     });
+  }
 
-    // Se erro 2000, tenta API da Europa
-    if (response.data.result === 2000) {
-        response = await axios.get('https://eapi.pcloud.com/userinfo', {
-            params: {
-                getauth: 1,
-                logout: 1,
-                username: email,
-                password: password
-            }
-        });
-    }
+  if (response.data.result !== 0) {
+    throw new Error(response.data.error || `Erro de login: ${response.data.result}`);
+  }
 
-    if (response.data.result !== 0) {
-        throw new Error(response.data.error || `Erro de login: ${response.data.result}`);
-    }
-
-    return response.data.auth;
+  return response.data.auth;
 }
 
 async function listFolder(folderId) {
-    const response = await axios.get(`${BASE_URL}/listfolder`, {
-        params: {
-            folderid: folderId,
-            auth: authToken
-        }
-    });
-
-    if (response.data.result !== 0) {
-        throw new Error(`Erro API: ${response.data.error || response.data.result}`);
+  const response = await axios.get(`${BASE_URL}/listfolder`, {
+    params: {
+      folderid: folderId,
+      auth: authToken
     }
+  });
 
-    return response.data.metadata;
+  if (response.data.result !== 0) {
+    throw new Error(`Erro API: ${response.data.error || response.data.result}`);
+  }
+
+  return response.data.metadata;
 }
 
 async function createFolderIfNotExists(parentFolderId, folderName) {
-    const response = await axios.get(`${BASE_URL}/createfolderifnotexists`, {
-        params: {
-            folderid: parentFolderId,
-            name: folderName,
-            auth: authToken
-        }
-    });
-
-    if (response.data.result !== 0) {
-        throw new Error(`Erro ao criar pasta: ${response.data.error || response.data.result}`);
+  const response = await axios.get(`${BASE_URL}/createfolderifnotexists`, {
+    params: {
+      folderid: parentFolderId,
+      name: folderName,
+      auth: authToken
     }
+  });
 
-    return response.data.metadata;
+  if (response.data.result !== 0) {
+    throw new Error(`Erro ao criar pasta: ${response.data.error || response.data.result}`);
+  }
+
+  return response.data.metadata;
 }
 
 async function renameFile(fileId, options = {}) {
-    const params = {
-        fileid: fileId,
-        auth: authToken
-    };
+  const params = {
+    fileid: fileId,
+    auth: authToken
+  };
 
-    if (options.tofolderid) {
-        params.tofolderid = options.tofolderid;
-    }
-    if (options.toname) {
-        params.toname = options.toname;
-    }
+  if (options.tofolderid) {
+    params.tofolderid = options.tofolderid;
+  }
+  if (options.toname) {
+    params.toname = options.toname;
+  }
 
-    const response = await axios.get(`${BASE_URL}/renamefile`, {
-        params
-    });
+  const response = await axios.get(`${BASE_URL}/renamefile`, {
+    params
+  });
 
-    if (response.data.result !== 0) {
-        throw new Error(`Erro ao renomear/mover arquivo: ${response.data.error || response.data.result}`);
-    }
+  if (response.data.result !== 0) {
+    throw new Error(`Erro ao renomear/mover arquivo: ${response.data.error || response.data.result}`);
+  }
 
-    return response.data.metadata;
+  return response.data.metadata;
 }
 
 // ============================================================
@@ -274,200 +274,184 @@ async function renameFile(fileId, options = {}) {
 // ============================================================
 
 async function organizeEpubFiles() {
-    console.log('═══════════════════════════════════════════════════════════');
-    console.log('   ORGANIZADOR DE ARQUIVOS EPUB - pCloud');
-    console.log('═══════════════════════════════════════════════════════════');
-    console.log(`\nIniciando em: ${new Date().toISOString()}`);
+  console.log('═══════════════════════════════════════════════════════════');
+  console.log('   ORGANIZADOR DE ARQUIVOS EPUB - pCloud');
+  console.log('═══════════════════════════════════════════════════════════');
+  console.log(`\nIniciando em: ${new Date().toISOString()}`);
 
-    const results = {
-        totalProcessed: 0,
-        totalMoved: 0,
-        totalErrors: 0,
-        totalRenamed: 0,
-        totalDuplicates: 0,
-        categoryCount: {},
-        errors: [],
-        logs: []
-    };
+  const results = {
+    totalProcessed: 0,
+    totalMoved: 0,
+    totalErrors: 0,
+    totalRenamed: 0,
+    totalDuplicates: 0,
+    categoryCount: {},
+    errors: [],
+    logs: []
+  };
 
-    const folderCache = new Map();
-    const seenFiles = new Map();
+  const folderCache = new Map();
+  const seenFiles = new Map();
 
-    try {
-        // 1. Listar arquivos
-        results.logs.push('📂 Listando arquivos da pasta fonte...');
-        const folderData = await listFolder(SOURCE_FOLDER_ID);
-        const allContents = folderData.contents || [];
-
-        results.logs.push(`Total de itens na pasta: ${allContents.length}`);
-
-        // 2. Filtrar apenas .epub
-        const epubFiles = allContents.filter(item =>
-            !item.isfolder && item.name.toLowerCase().endsWith('.epub')
-        );
-
-        results.logs.push(`Arquivos EPUB encontrados: ${epubFiles.length}`);
-
-        // 3. Limitar ao batch
-        const batch = epubFiles.slice(0, BATCH_SIZE);
-        results.logs.push(`Arquivos no lote de processamento: ${batch.length}`);
-
-        if (batch.length === 0) {
-            results.logs.push('⚠️ Nenhum arquivo EPUB encontrado para processar.');
-            return results;
-        }
-
-        // Processar cada arquivo
-        for (let i = 0; i < batch.length; i++) {
-            const file = batch[i];
-            const progress = `[${i + 1}/${batch.length}]`;
-
-            results.totalProcessed++;
-
-            try {
-                let currentFileName = file.name;
-                let currentFileId = file.fileid;
-
-                // PASSO 1: SANITIZAÇÃO
-                if (currentFileName.startsWith('_')) {
-                    const newName = currentFileName.substring(1);
-                    results.logs.push(`${progress} 🔧 Sanitizando: "${currentFileName}" → "${newName}"`);
-
-                    await renameFile(currentFileId, { toname: newName });
-                    await delay(WRITE_DELAY);
-
-                    currentFileName = newName;
-                    results.totalRenamed++;
-                }
-
-                // PASSO 2: DEDUPLICAÇÃO
-                const fileKey = `${currentFileName}|${file.size}`;
-
-                if (seenFiles.has(fileKey)) {
-                    results.logs.push(`${progress} 🔄 Duplicado detectado: "${currentFileName}"`);
-
-                    if (!folderCache.has('Duplicados')) {
-                        const dupFolder = await createFolderIfNotExists(SOURCE_FOLDER_ID, 'Duplicados');
-                        folderCache.set('Duplicados', dupFolder.folderid);
-                        await delay(WRITE_DELAY);
-                    }
-
-                    const dupFolderId = folderCache.get('Duplicados');
-                    await renameFile(currentFileId, { tofolderid: dupFolderId });
-                    await delay(WRITE_DELAY);
-
-                    results.totalDuplicates++;
-                    results.totalMoved++;
-                    results.categoryCount['Duplicados'] = (results.categoryCount['Duplicados'] || 0) + 1;
-                    continue;
-                }
-
-                seenFiles.set(fileKey, { id: currentFileId, name: currentFileName });
-
-                // PASSO 3: CATEGORIZAÇÃO
-                const category = categorizeFile(currentFileName);
-                results.logs.push(`${progress} 📖 "${currentFileName}" → ${category}`);
-
-                // PASSO 4: MOVIMENTAÇÃO
-                if (!folderCache.has(category)) {
-                    const categoryFolder = await createFolderIfNotExists(SOURCE_FOLDER_ID, category);
-                    folderCache.set(category, categoryFolder.folderid);
-                    await delay(WRITE_DELAY);
-                }
-
-                const targetFolderId = folderCache.get(category);
-
-                await renameFile(currentFileId, { tofolderid: targetFolderId });
-                await delay(WRITE_DELAY);
-
-                results.totalMoved++;
-                results.categoryCount[category] = (results.categoryCount[category] || 0) + 1;
-
-            } catch (error) {
-                results.totalErrors++;
-                results.errors.push({
-                    file: file.name,
-                    error: error.message
-                });
-                results.logs.push(`${progress} ❌ ERRO: ${file.name} - ${error.message}`);
-            }
-        }
-
-        results.logs.push(`\n✅ Processo concluído em: ${new Date().toISOString()}`);
-        return results;
-
-    } catch (error) {
-        results.logs.push(`💥 ERRO FATAL: ${error.message}`);
-        results.errors.push({ file: 'FATAL', error: error.message });
-        throw error;
-    }
-}
-
-// ============================================================
-// FUNÇÃO DE ANÁLISE - GERA MARKDOWN
-// ============================================================
-
-async function analyzeAllFiles() {
-    console.log('Analisando todos os arquivos...');
-
+  try {
+    // 1. Listar arquivos
+    results.logs.push('📂 Listando arquivos da pasta fonte...');
     const folderData = await listFolder(SOURCE_FOLDER_ID);
     const allContents = folderData.contents || [];
 
+    results.logs.push(`Total de itens na pasta: ${allContents.length}`);
+
+    // 2. Filtrar apenas .epub
     const epubFiles = allContents.filter(item =>
-        !item.isfolder && item.name.toLowerCase().endsWith('.epub')
+      !item.isfolder && item.name.toLowerCase().endsWith('.epub')
     );
 
-    // Gerar Markdown
-    let markdown = `# Análise de Arquivos EPUB para Classificação\n\n`;
-    markdown += `**Total de arquivos:** ${epubFiles.length}\n\n`;
-    markdown += `**Data da análise:** ${new Date().toISOString()}\n\n`;
-    markdown += `---\n\n`;
-    markdown += `## Instruções para a IA\n\n`;
-    markdown += `Analise a lista de arquivos EPUB abaixo e classifique cada um em UMA das seguintes categorias:\n\n`;
-    markdown += `1. Artes, Cinema e Fotografia\n`;
-    markdown += `2. Autoajuda\n`;
-    markdown += `3. Bebês e Crianças\n`;
-    markdown += `4. Biografias e Histórias Reais\n`;
-    markdown += `5. Ciências e Engenharia\n`;
-    markdown += `6. Computação, Informática e Mídias Digitais\n`;
-    markdown += `7. Culinária e Gastronomia\n`;
-    markdown += `8. Direito\n`;
-    markdown += `9. Educação, Referência e Didáticos\n`;
-    markdown += `10. Esportes, Lazer e Viagens\n`;
-    markdown += `11. Fantasia, Horror e Ficção Científica\n`;
-    markdown += `12. HQs, Mangás e Graphic Novels\n`;
-    markdown += `13. Inglês e Outras Línguas\n`;
-    markdown += `14. Jovem Adulto\n`;
-    markdown += `15. Literatura e Ficção\n`;
-    markdown += `16. Negócios e Economia\n`;
-    markdown += `17. Religião e Espiritualidade\n`;
-    markdown += `18. Romance\n`;
-    markdown += `19. Saúde, Emagrecimento e Bem-Estar\n`;
-    markdown += `20. Sexualidade e Relacionamentos\n`;
-    markdown += `21. Sociologia e Ciências Sociais\n`;
-    markdown += `22. Suspense, Policial e Thriller\n`;
-    markdown += `23. Outros\n\n`;
-    markdown += `**Retorne um JSON** no formato:\n`;
-    markdown += `\`\`\`json\n`;
-    markdown += `{\n`;
-    markdown += `  "Nome do Arquivo.epub": "Categoria",\n`;
-    markdown += `  ...\n`;
-    markdown += `}\n`;
-    markdown += `\`\`\`\n\n`;
-    markdown += `---\n\n`;
-    markdown += `## Lista de Arquivos (${epubFiles.length} arquivos)\n\n`;
+    results.logs.push(`Arquivos EPUB encontrados: ${epubFiles.length}`);
 
-    // Listar todos os arquivos numerados
-    epubFiles.forEach((file, index) => {
-        markdown += `${index + 1}. ${file.name}\n`;
-    });
+    // 3. Limitar ao batch
+    const batch = epubFiles.slice(0, BATCH_SIZE);
+    results.logs.push(`Arquivos no lote de processamento: ${batch.length}`);
 
-    return {
-        markdown,
-        totalFiles: epubFiles.length,
-        files: epubFiles.map(f => ({ name: f.name, fileid: f.fileid, size: f.size }))
-    };
+    if (batch.length === 0) {
+      results.logs.push('⚠️ Nenhum arquivo EPUB encontrado para processar.');
+      return results;
+    }
+
+    // Processar cada arquivo
+    for (let i = 0; i < batch.length; i++) {
+      const file = batch[i];
+      const progress = `[${i + 1}/${batch.length}]`;
+
+      results.totalProcessed++;
+
+      try {
+        let currentFileName = file.name;
+        let currentFileId = file.fileid;
+
+        // PASSO 1: SANITIZAÇÃO
+        if (currentFileName.startsWith('_')) {
+          const newName = currentFileName.substring(1);
+          results.logs.push(`${progress} 🔧 Sanitizando: "${currentFileName}" → "${newName}"`);
+
+          await renameFile(currentFileId, { toname: newName });
+          await delay(WRITE_DELAY);
+
+          currentFileName = newName;
+          results.totalRenamed++;
+        }
+
+        // PASSO 2: DEDUPLICAÇÃO
+        const fileKey = `${currentFileName}|${file.size}`;
+
+        if (seenFiles.has(fileKey)) {
+          results.logs.push(`${progress} 🔄 Duplicado detectado: "${currentFileName}"`);
+
+          if (!folderCache.has('Duplicados')) {
+            const dupFolder = await createFolderIfNotExists(SOURCE_FOLDER_ID, 'Duplicados');
+            folderCache.set('Duplicados', dupFolder.folderid);
+            await delay(WRITE_DELAY);
+          }
+
+          const dupFolderId = folderCache.get('Duplicados');
+          await renameFile(currentFileId, { tofolderid: dupFolderId });
+          await delay(WRITE_DELAY);
+
+          results.totalDuplicates++;
+          results.totalMoved++;
+          results.categoryCount['Duplicados'] = (results.categoryCount['Duplicados'] || 0) + 1;
+          continue;
+        }
+
+        seenFiles.set(fileKey, { id: currentFileId, name: currentFileName });
+
+        // PASSO 3: CATEGORIZAÇÃO
+        const category = categorizeFile(currentFileName);
+        results.logs.push(`${progress} 📖 "${currentFileName}" → ${category}`);
+
+        // PASSO 4: MOVIMENTAÇÃO
+        if (!folderCache.has(category)) {
+          const categoryFolder = await createFolderIfNotExists(SOURCE_FOLDER_ID, category);
+          folderCache.set(category, categoryFolder.folderid);
+          await delay(WRITE_DELAY);
+        }
+
+        const targetFolderId = folderCache.get(category);
+
+        await renameFile(currentFileId, { tofolderid: targetFolderId });
+        await delay(WRITE_DELAY);
+
+        results.totalMoved++;
+        results.categoryCount[category] = (results.categoryCount[category] || 0) + 1;
+
+      } catch (error) {
+        results.totalErrors++;
+        results.errors.push({
+          file: file.name,
+          error: error.message
+        });
+        results.logs.push(`${progress} ❌ ERRO: ${file.name} - ${error.message}`);
+      }
+    }
+
+    results.logs.push(`\n✅ Processo concluído em: ${new Date().toISOString()}`);
+    return results;
+
+  } catch (error) {
+    results.logs.push(`💥 ERRO FATAL: ${error.message}`);
+    results.errors.push({ file: 'FATAL', error: error.message });
+    throw error;
+  }
 }
+
+// ============================================================
+// FUNÇÃO DE ANÁLISE - GERA LISTA OTIMIZADA
+// ============================================================
+
+const BATCH_SIZE_ANALYSIS = 500; // Arquivos por lote
+
+async function analyzeAllFiles() {
+  console.log('Analisando todos os arquivos...');
+
+  const folderData = await listFolder(SOURCE_FOLDER_ID);
+  const allContents = folderData.contents || [];
+
+  const epubFiles = allContents.filter(item =>
+    !item.isfolder && item.name.toLowerCase().endsWith('.epub')
+  );
+
+  // Dividir em lotes
+  const batches = [];
+  for (let i = 0; i < epubFiles.length; i += BATCH_SIZE_ANALYSIS) {
+    batches.push(epubFiles.slice(i, i + BATCH_SIZE_ANALYSIS));
+  }
+
+  // Gerar lista simples para cada lote (economiza tokens)
+  const batchLists = batches.map((batch, batchIndex) => {
+    return batch.map(f => f.name).join('\n');
+  });
+
+  return {
+    totalFiles: epubFiles.length,
+    totalBatches: batches.length,
+    batchLists,
+    files: epubFiles.map(f => ({ name: f.name, fileid: f.fileid, size: f.size }))
+  };
+}
+
+// Prompt otimizado (separado da lista)
+const CLASSIFICATION_PROMPT = `Classifique cada arquivo EPUB em UMA categoria:
+
+CATEGORIAS:
+1-Fantasia, 2-Romance, 3-Jovem Adulto, 4-Ficção Científica, 5-Horror/Terror, 6-Suspense/Thriller, 7-Policial/Mistério, 8-Literatura Clássica, 9-Literatura Contemporânea, 10-Autoajuda, 11-Biografias, 12-Negócios/Economia, 13-Religião/Espiritualidade, 14-Saúde/Bem-Estar, 15-Ciências, 16-Computação/Tecnologia, 17-HQs/Mangás, 18-Infantil, 19-Erótico, 20-Outros
+
+REGRAS:
+- Sarah J. Maas, Holly Black, Leigh Bardugo = Fantasia
+- Anna Todd, Colleen Hoover = Romance
+- Suzanne Collins, Victoria Aveyard = Jovem Adulto
+- Pesquise autores desconhecidos na internet
+
+RESPONDA APENAS com JSON:
+{"arquivo.epub":"Categoria",...}`;
 
 // ============================================================
 // SERVIDOR EXPRESS
@@ -481,7 +465,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Página inicial
 app.get('/', (req, res) => {
-    let html = `
+  let html = `
     <!DOCTYPE html>
     <html lang="pt-BR">
     <head>
@@ -570,8 +554,8 @@ app.get('/', (req, res) => {
           <h2>Status da Conexão</h2>
   `;
 
-    if (authToken) {
-        html += `
+  if (authToken) {
+    html += `
           <div class="status success">✅ Conectado ao pCloud</div>
           <p class="user-info">Logado como: <strong>${userEmail}</strong></p>
           <p style="margin: 15px 0;">Token ativo. Você pode executar a organização dos arquivos.</p>
@@ -585,8 +569,8 @@ app.get('/', (req, res) => {
             <a href="/logout" class="btn btn-danger">Desconectar</a>
           </div>
     `;
-    } else {
-        html += `
+  } else {
+    html += `
           <div class="status info">🔌 Não conectado</div>
           <p style="margin: 15px 0;">Faça login com suas credenciais do pCloud:</p>
           
@@ -602,15 +586,15 @@ app.get('/', (req, res) => {
             <button type="submit" class="btn">🔐 Entrar</button>
           </form>
     `;
-    }
+  }
 
-    html += `
+  html += `
         </div>
   `;
 
-    // Mostrar último resultado
-    if (lastResults) {
-        html += `
+  // Mostrar último resultado
+  if (lastResults) {
+    html += `
         <div class="card">
           <h2>📊 Último Resultado</h2>
           
@@ -619,14 +603,14 @@ app.get('/', (req, res) => {
             <tr><th>Categoria</th><th>Quantidade</th></tr>
     `;
 
-        const sortedCategories = Object.entries(lastResults.categoryCount)
-            .sort((a, b) => b[1] - a[1]);
+    const sortedCategories = Object.entries(lastResults.categoryCount)
+      .sort((a, b) => b[1] - a[1]);
 
-        for (const [category, count] of sortedCategories) {
-            html += `<tr><td>${category}</td><td>${count}</td></tr>`;
-        }
+    for (const [category, count] of sortedCategories) {
+      html += `<tr><td>${category}</td><td>${count}</td></tr>`;
+    }
 
-        html += `
+    html += `
           </table>
           
           <h3 style="margin: 20px 0 10px;">Resumo</h3>
@@ -642,37 +626,37 @@ app.get('/', (req, res) => {
           <div class="logs">${lastResults.logs.join('\n')}</div>
         </div>
     `;
-    }
+  }
 
-    html += `
+  html += `
       </div>
     </body>
     </html>
   `;
 
-    res.send(html);
+  res.send(html);
 });
 
 // Login
 app.post('/login', async (req, res) => {
-    const { email, password } = req.body;
+  const { email, password } = req.body;
 
-    if (!email || !password) {
-        return res.send(`
+  if (!email || !password) {
+    return res.send(`
       <h1>Erro</h1>
       <p>Email e senha são obrigatórios.</p>
       <a href="/">Voltar</a>
     `);
-    }
+  }
 
-    try {
-        authToken = await loginPCloud(email, password);
-        userEmail = email;
-        console.log('✅ Login realizado com sucesso!');
-        res.redirect('/');
-    } catch (error) {
-        console.error('Erro no login:', error.message);
-        res.send(`
+  try {
+    authToken = await loginPCloud(email, password);
+    userEmail = email;
+    console.log('✅ Login realizado com sucesso!');
+    res.redirect('/');
+  } catch (error) {
+    console.error('Erro no login:', error.message);
+    res.send(`
       <!DOCTYPE html>
       <html>
       <head>
@@ -691,49 +675,65 @@ app.post('/login', async (req, res) => {
       </body>
       </html>
     `);
-    }
+  }
 });
 
 // Executar organização
 app.get('/run', async (req, res) => {
-    if (!authToken) {
-        return res.redirect('/');
-    }
+  if (!authToken) {
+    return res.redirect('/');
+  }
 
-    if (isProcessing) {
-        return res.send(`
+  if (isProcessing) {
+    return res.send(`
       <h1>Processamento em andamento</h1>
       <p>Aguarde a conclusão do processamento atual.</p>
       <a href="/">Voltar</a>
     `);
-    }
+  }
 
-    isProcessing = true;
+  isProcessing = true;
 
-    try {
-        lastResults = await organizeEpubFiles();
-        isProcessing = false;
-        res.redirect('/');
-    } catch (error) {
-        isProcessing = false;
-        res.send(`
+  try {
+    lastResults = await organizeEpubFiles();
+    isProcessing = false;
+    res.redirect('/');
+  } catch (error) {
+    isProcessing = false;
+    res.send(`
       <h1>Erro durante processamento</h1>
       <p>${error.message}</p>
       <a href="/">Voltar</a>
     `);
-    }
+  }
 });
 
-// Analisar arquivos - gera Markdown
+// Analisar arquivos - gera lista otimizada em lotes
 app.get('/analyze', async (req, res) => {
-    if (!authToken) {
-        return res.redirect('/');
-    }
+  if (!authToken) {
+    return res.redirect('/');
+  }
 
-    try {
-        const analysis = await analyzeAllFiles();
+  try {
+    const analysis = await analyzeAllFiles();
 
-        res.send(`
+    // Gerar HTML dos lotes
+    let batchesHtml = '';
+    analysis.batchLists.forEach((list, index) => {
+      const filesInBatch = list.split('\n').length;
+      batchesHtml += `
+        <div class="batch-card">
+          <div class="batch-header">
+            <h3>📦 Lote ${index + 1} de ${analysis.totalBatches}</h3>
+            <span class="batch-count">${filesInBatch} arquivos</span>
+          </div>
+          <button class="btn btn-copy btn-small" onclick="copyBatch(${index})">📋 Copiar Lote ${index + 1}</button>
+          <div class="batch-content" id="batch-${index}">${list.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+        </div>
+      `;
+    });
+
+    res.send(`
       <!DOCTYPE html>
       <html lang="pt-BR">
       <head>
@@ -749,8 +749,9 @@ app.get('/analyze', async (req, res) => {
             color: #fff;
             padding: 20px;
           }
-          .container { max-width: 1000px; margin: 0 auto; }
+          .container { max-width: 1200px; margin: 0 auto; }
           h1 { text-align: center; margin-bottom: 30px; color: #00d9ff; }
+          h2 { margin-bottom: 15px; color: #00d9ff; }
           .card {
             background: rgba(255,255,255,0.1);
             border-radius: 16px;
@@ -760,13 +761,13 @@ app.get('/analyze', async (req, res) => {
           }
           .btn {
             display: inline-block;
-            padding: 15px 30px;
+            padding: 12px 24px;
             background: linear-gradient(135deg, #00d9ff 0%, #0077ff 100%);
             color: #fff;
             text-decoration: none;
             border-radius: 8px;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 14px;
             border: none;
             cursor: pointer;
             margin-right: 10px;
@@ -774,19 +775,47 @@ app.get('/analyze', async (req, res) => {
           }
           .btn:hover { opacity: 0.9; }
           .btn-copy { background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); }
-          .btn-download { background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%); }
-          .markdown-box {
+          .btn-small { padding: 8px 16px; font-size: 12px; }
+          .prompt-box {
             background: #0a0a0f;
-            padding: 20px;
+            padding: 15px;
             border-radius: 8px;
             font-family: monospace;
-            font-size: 12px;
+            font-size: 13px;
             white-space: pre-wrap;
-            max-height: 500px;
-            overflow-y: auto;
+            border: 1px solid #00d9ff;
+            margin: 15px 0;
+          }
+          .batch-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
             border: 1px solid rgba(255,255,255,0.1);
           }
-          .stats { color: #00ff88; margin-bottom: 20px; }
+          .batch-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+          }
+          .batch-header h3 { color: #fff; font-size: 16px; }
+          .batch-count { color: #00ff88; font-size: 14px; }
+          .batch-content {
+            background: #0a0a0f;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 11px;
+            max-height: 150px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            margin-top: 10px;
+          }
+          .stats { color: #00ff88; font-size: 18px; }
+          .instructions { background: rgba(0,217,255,0.1); padding: 15px; border-radius: 8px; margin: 15px 0; }
+          .instructions ol { margin-left: 20px; }
+          .instructions li { margin: 8px 0; }
         </style>
       </head>
       <body>
@@ -794,75 +823,73 @@ app.get('/analyze', async (req, res) => {
           <h1>📊 Análise de Arquivos EPUB</h1>
           
           <div class="card">
-            <h2>Estatísticas</h2>
-            <p class="stats">Total de arquivos EPUB encontrados: <strong>${analysis.totalFiles}</strong></p>
-            
-            <h2 style="margin-top: 20px;">Ações</h2>
-            <p style="margin: 15px 0;">Copie o Markdown abaixo e cole em uma IA (ChatGPT, Claude, Gemini) para classificar os arquivos:</p>
-            
-            <button class="btn btn-copy" onclick="copyMarkdown()">📋 Copiar Markdown</button>
-            <a href="/analyze/download" class="btn btn-download">⬇️ Baixar como .md</a>
+            <h2>📈 Estatísticas</h2>
+            <p class="stats">Total: <strong>${analysis.totalFiles}</strong> arquivos em <strong>${analysis.totalBatches}</strong> lotes de 500</p>
+          </div>
+
+          <div class="card">
+            <h2>📝 Passo 1: Copie o Prompt</h2>
+            <p style="margin-bottom: 10px;">Copie este prompt e cole na IA ANTES de colar a lista de arquivos:</p>
+            <button class="btn btn-copy" onclick="copyPrompt()">📋 Copiar Prompt</button>
+            <div class="prompt-box" id="prompt-content">${CLASSIFICATION_PROMPT.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+          </div>
+
+          <div class="card">
+            <h2>📦 Passo 2: Copie os Lotes</h2>
+            <div class="instructions">
+              <ol>
+                <li>Primeiro cole o <strong>prompt</strong> na IA</li>
+                <li>Depois cole <strong>um lote por vez</strong> e envie</li>
+                <li>A IA retornará um JSON com as classificações</li>
+                <li>Repita para todos os lotes</li>
+              </ol>
+            </div>
+            ${batchesHtml}
+          </div>
+
+          <div class="card">
             <a href="/" class="btn">← Voltar</a>
-            
-            <h2 style="margin-top: 30px;">Markdown Gerado</h2>
-            <div class="markdown-box" id="markdown-content">${analysis.markdown.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
           </div>
         </div>
         
         <script>
-          function copyMarkdown() {
-            const content = document.getElementById('markdown-content').innerText;
-            navigator.clipboard.writeText(content).then(() => {
-              alert('Markdown copiado para a área de transferência!');
-            }).catch(err => {
-              console.error('Erro ao copiar:', err);
-              alert('Erro ao copiar. Por favor, selecione manualmente e copie.');
+          const prompt = ${JSON.stringify(CLASSIFICATION_PROMPT)};
+          const batches = ${JSON.stringify(analysis.batchLists)};
+          
+          function copyPrompt() {
+            navigator.clipboard.writeText(prompt).then(() => {
+              alert('✅ Prompt copiado! Agora cole na IA.');
+            });
+          }
+          
+          function copyBatch(index) {
+            navigator.clipboard.writeText(batches[index]).then(() => {
+              alert('✅ Lote ' + (index + 1) + ' copiado! Cole na IA após o prompt.');
             });
           }
         </script>
       </body>
       </html>
-        `);
-    } catch (error) {
-        res.send(`
-      <h1>Erro durante análise</h1>
-      <p>${error.message}</p>
-      <a href="/">Voltar</a>
-        `);
-    }
-});
-
-// Download do Markdown
-app.get('/analyze/download', async (req, res) => {
-    if (!authToken) {
-        return res.redirect('/');
-    }
-
-    try {
-        const analysis = await analyzeAllFiles();
-
-        res.setHeader('Content-Type', 'text/markdown');
-        res.setHeader('Content-Disposition', 'attachment; filename="analise-epub.md"');
-        res.send(analysis.markdown);
-    } catch (error) {
-        res.status(500).send('Erro ao gerar arquivo');
-    }
+    `);
+  } catch (error) {
+    res.send('<h1>Erro durante análise</h1><p>' + error.message + '</p><a href="/">Voltar</a>');
+  }
 });
 
 // Logout
 app.get('/logout', (req, res) => {
-    authToken = null;
-    userEmail = null;
-    lastResults = null;
-    res.redirect('/');
+  authToken = null;
+  userEmail = null;
+  lastResults = null;
+  res.redirect('/');
 });
 
 // Health check
 app.get('/health', (req, res) => {
-    res.json({ status: 'ok', connected: !!authToken });
+  res.json({ status: 'ok', connected: !!authToken });
 });
 
 // Iniciar servidor
 app.listen(PORT, () => {
-    console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);
+  console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);
 });
