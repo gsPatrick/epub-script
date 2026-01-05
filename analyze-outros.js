@@ -5,18 +5,10 @@ const CATEGORY_MAPPING = {
   "Fantasia": [
     // Autores internacionais
     "sarah j. maas", "holly black", "leigh bardugo", "brandon sanderson",
-    "stephanie garber", "jay kristoff", "guillermo del toro",
     "cassandra clare", "laini taylor", "victoria aveyard", "patrick rothfuss",
     "robin hobb", "joe abercrombie", "george r.r. martin", "r.r. martin", "george martin",
     "trudi canavan", "andrzej sapkowski", "robert jordan", "terry goodkind",
     "terry pratchett", "neil gaiman", "ursula k. le guin", "j.r.r. tolkien",
-    "john flanagan", "erin hunter", "robert e. howard", "cinda williams chima",
-    "peter lerangis", "terry brooks", "a. g. howard", "oliver bowden",
-    "stephenie meyer", "stephanie meyer", "twilight", "crepusculo",
-    "assassin's creed", "patrick ness", "taran matharu", "katherine arden",
-    "mainak dhar", "tao wong", "raven kennedy",
-    "danielle paige", "jennifer a. nielsen", "elise kova", "victoria schwab",
-    "morgan rice", "anne bishop", "marion zimmer bradley", "kristin cast",
     "diana wynne jones", "juliet marillier", "maria v. snyder",
     "jennifer l. armentrout", "rebecca yarros", "maggie stiefvater", "v.e. schwab",
     "v. e. schwab", "naomi novik", "samantha shannon", "tomi adeyemi", "sabaa tahir",
@@ -56,23 +48,13 @@ const CATEGORY_MAPPING = {
     "fundadores", "rastro de sangue", "sonhador", "prazeres violentos",
     "os lobos do milenio", "millenium wolves", "house of night", "vampire academy",
     // Palavras-chave
-    "dragao", "feiticeira", "bruxo", "elfo", "magia", "reino encantado", "lobisomem", "vampiro",
-    "dragon", "witch", "wizard", "fae", "fada", "kingdom", "reino", "throne", "trono",
-    "sword", "espada", "chronicles", "cronicas", "shadow", "sombra", "blood", "sangue",
-    "curse", "maldicao", "crown", "coroa", "queen", "rainha", "king", "rei", "prince", "principe",
-    "princess", "princesa", "beast", "fera", "fantasy", "fantasia"
+    "dragao", "feiticeira", "bruxo", "elfo", "magia", "reino encantado", "lobisomem", "vampiro"
   ],
 
   // === ROMANCE ===
   "Romance": [
     // Autores contemporâneos internacionais
     "colleen hoover", "anna todd", "nicholas sparks", "sally thorne",
-    "lauren layne", "mercedes ron", "sveva casati modignani", "abby jimenez",
-    "ruby dixon", "suzanne enoch", "francine rivers", "elena ferrante",
-    "paul auster", "jostein gaarder", "bella jewel",
-    "lauren layne", "mercedes ron", "sveva casati modignani", "abby jimenez",
-    "ruby dixon", "suzanne enoch", "francine rivers", "elena ferrante",
-    "paul auster", "jostein gaarder", "bella jewel",
     "christina lauren", "ali hazelwood", "emily henry", "tessa bailey",
     "helena hunting", "penelope douglas", "elle kennedy", "lj shen",
     "monica murphy", "brittainy c. cherry", "mia sheridan", "tillie cole",
@@ -116,11 +98,8 @@ const CATEGORY_MAPPING = {
     // J.R. Ward e paranormal romance
     "j.r. ward", "jr ward", "irmandade da adaga negra", "sherrilyn kenyon",
     "kresley cole", "gena showalter", "nalini singh", "larissa ione",
-    "j. r. ward", "c. s. lewis", "c.s. lewis", "lara adrian", "cynthia eden",
-    "alexandra ivy", "lynsay sands",
+    "lara adrian", "cynthia eden", "alexandra ivy", "lynsay sands",
     "christine feehan", "jeaniene frost", "kelley armstrong", "patricia briggs",
-    "fiona grace", "charlaine harris", "anne bishop", "kristen ashley",
-    "nalini singh", "laurell k. hamilton", "faith hunter", "ilone andrews",
     // Séries
     "bridgertons", "ravenels", "wallflowers", "hathaways", "spindle cove",
     "duque e eu", "visconde", "condessa", "lorde", "lady",
@@ -129,20 +108,13 @@ const CATEGORY_MAPPING = {
     "sins for all seasons", "orfaos de saint james", "guilty series",
     "royal brotherhood", "rrh #",
     // Palavras-chave
-    "noiva", "duque", "seducao", "paixao", "amor", "romance", "clube do livro",
-    "love", "heart", "coracao", "kiss", "beijo", "bride", "wedding", "casamento",
-    "billionaire", "bilionario", "secret", "segredo", "desire", "desejo",
-    "temptation", "tentacao", "promise", "promessa", "forever", "sempre",
-    "dream", "sonho", "viscount", "visconde", "earl", "conde", "marquess", "marques",
-    "scandal", "escandalo", "affair", "caso", "lover", "amante", "wife", "esposa",
-    "husband", "marido"
+    "noiva", "duque", "seducao", "paixao", "amor", "romance", "clube do livro"
   ],
 
   // === JOVEM ADULTO (YA) ===
   "Jovem Adulto": [
     // Autores
     "suzanne collins", "veronica roth", "rainbow rowell",
-    "jennifer lynn barnes", "michael grant", "ransom riggs", "kiersten white",
     "john green", "jenny han", "becky albertalli", "adam silvera",
     "angie thomas", "nicola yoon", "stephanie perkins", "morgan matson",
     "kasie west", "jennifer niven", "gayle forman", "colleen houck",
@@ -175,10 +147,6 @@ const CATEGORY_MAPPING = {
   "Suspense e Thriller": [
     // Autores
     "gillian flynn", "paula hawkins", "ruth ware", "a.j. finn",
-    "joel dicker", "robin cook", "john le carre", "scott turow",
-    "anthony horowitz", "leslie wolfe",
-    "joel dicker", "robin cook", "john le carre", "scott turow",
-    "anthony horowitz", "leslie wolfe",
     "b.a. paris", "shari lapena", "karin slaughter", "lisa gardner",
     "tess gerritsen", "michael connelly", "lee child", "harlan coben",
     "james patterson", "dan brown", "john grisham", "jo nesbo",
@@ -192,17 +160,12 @@ const CATEGORY_MAPPING = {
     "catherine steadman", "daniel silva", "brad thor", "vince flynn",
     "brad meltzer", "david baldacci", "nelson demille", "jack mars",
     "robert ludlum", "frederick forsyth", "ken follett", "jack higgins",
-    "daniel cole", "m. j. arlidge", "lucy foley", "richard morgan", "peter clines",
     "freida mcfadden", "patrick logan", "sidney sheldon", "jeffrey archer",
     "james rollins", "robert bryndza", "luke jennings", "killing eve",
     // Autores brasileiros
     "raphael montes", "ilana casoy", "patricia melo",
     // Palavras-chave
-    "thriller", "suspense", "assassino", "serial killer", "fbi", "cia",
-    "murder", "assassinato", "kill", "morte", "dead", "morto", "death",
-    "girl", "garota", "gone", "desaparecida", "lies", "mentiras",
-    "truth", "verdade", "detective", "detetive", "crime", "investigation", "investigacao",
-    "blood", "sangue", "bones", "ossos", "grave", "tumulo", "nightmare", "pesadelo"
+    "thriller", "suspense", "assassino", "serial killer", "fbi", "cia"
   ],
 
   // === POLICIAL E MISTÉRIO ===
@@ -242,15 +205,13 @@ const CATEGORY_MAPPING = {
     // Palavras-chave
     "horror", "terror", "assombracao", "fantasma", "monstro", "vampiro",
     "demonio", "maldito", "pesadelo", "sobrenatural", "morte", "zumbi",
-    "fnaf", "five nights at freddys", "ghost", "haunted", "assombrado",
-    "devil", "diabo", "evil", "mal", "darkness", "escuridao", "fear", "medo"
+    "fnaf", "five nights at freddys"
   ],
 
   // === FICÇÃO CIENTÍFICA ===
   "Ficção Científica": [
     // Autores clássicos
     "frank herbert", "isaac asimov", "arthur c. clarke", "philip k. dick",
-    "kurt vonnegut", "amie kaufman", "scott westerfeld",
     "ray bradbury", "ursula k. le guin", "william gibson", "dan simmons",
     "orson scott card", "ann leckie", "n.k. jemisin", "liu cixin", "cixin liu",
     "andy weir", "blake crouch", "margaret atwood",
@@ -297,16 +258,6 @@ const CATEGORY_MAPPING = {
     // Autores brasileiros
     "machado de assis", "jose saramago", "jorge amado", "eca de queiros",
     "fernando pessoa", "clarice lispector", "guimaraes rosa", "graciliano ramos",
-    "ian mcewan", "milan kundera", "william faulkner", "graham greene",
-    "philip roth", "john steinbeck", "italo calvino", "jose eduardo agualusa",
-    "cormac mccarthy", "toni morrison", "joseph conrad", "anton tchekhov",
-    "luigi pirandello", "alessandro baricco", "julian barnes", "elizabeth strout",
-    "voltaire", "john fante", "henry miller", "jack kerouac", "don delillo", "sally rooney",
-    "jonathan franzen", "michel houellebecq", "stephen chbosky", "patrick modiano", "georges simenon",
-    "sandor marai", "anais nin", "lionel shriver", "chimamanda ngozi adichie",
-    "bertrand russell", "alain de botton", "elif shafak", "brian weiss", "theodore dalrymple",
-    "drauzio varella",
-    "fredrik backman", "jon fosse", "primo levi", "orhan pamuk",
     "jose de alencar", "aluisio azevedo", "castro alves", "olavo bilac",
     "gonçalves dias", "manuel bandeira", "carlos drummond", "cecilia meireles",
     "rachel de queiroz", "lygia fagundes telles", "rubem fonseca",
@@ -314,8 +265,6 @@ const CATEGORY_MAPPING = {
     "ariano suassuna", "joao cabral de melo neto",
     // Autores internacionais
     "jane austen", "charles dickens", "leo tolstoy", "fyodor dostoevsky",
-    "louisa may alcott", "jack london", "vladimir nabokov", "kazuo ishiguro",
-    "antonio lobo antunes",
     "fiodor dostoievski", "dostoievski", "franz kafka", "virginia woolf",
     "ernest hemingway", "f. scott fitzgerald", "oscar wilde", "mark twain",
     "victor hugo", "honore de balzac", "gustave flaubert", "stendhal",
@@ -334,7 +283,6 @@ const CATEGORY_MAPPING = {
   "Negócios e Economia": [
     // Autores
     "peter drucker", "robert kiyosaki", "warren buffett", "ray dalio",
-    "nassim nicholas taleb", "a arte da guerra", "sun tzu", "napoleon hill",
     "nassim taleb", "benjamin graham", "phil knight", "reed hastings",
     "eric ries", "peter thiel", "tim ferriss", "gary vaynerchuk",
     "seth godin", "malcolm gladwell", "daniel kahneman", "richard thaler",
@@ -344,11 +292,7 @@ const CATEGORY_MAPPING = {
     // Palavras-chave
     "negocios", "empreendedorismo", "startups", "investimento",
     "financas", "marketing", "gestao", "bolsa", "dinheiro",
-    "economia", "lideranca empresarial", "vendas", "estrategia",
-    "business", "management", "leadership", "money", "investing",
-    "finance", "sales", "strategy", "brand", "marca", "startup",
-    "mike michalowicz", "profit first", "lucro primeiro", "mark wolynn",
-    "sepultura", "biography", "music", "banda"
+    "economia", "lideranca empresarial", "vendas", "estrategia"
   ],
 
   // === RELIGIÃO E ESPIRITUALIDADE ===
@@ -357,7 +301,6 @@ const CATEGORY_MAPPING = {
     "c.s. lewis", "timothy keller", "max lucado", "joyce meyer",
     "john piper", "padre marcelo rossi", "papa francisco", "john macarthur",
     "charles spurgeon", "billy graham", "rick warren", "john maxwell",
-    "comentarios expositivos hagnos", "a cabana", "william p. young",
     "lee strobel", "josh mcdowell", "ravi zacharias", "william lane craig",
     "tim lahaye", "edir macedo", "silas malafaia", "rr soares",
     // Autores espíritas
@@ -382,7 +325,7 @@ const CATEGORY_MAPPING = {
     // Autores internacionais
     "yuval noah harari", "antony beevor", "ian kershaw", "max hastings",
     "dan jones", "tom holland", "simon sebag montefiore", "niall ferguson",
-    "jared diamond", "eric hobsbawm", "hobsbawm", "fernand braudel", "barbara tuchman",
+    "jared diamond", "eric hobsbawm", "fernand braudel", "barbara tuchman",
     "doris kearns goodwin", "david mccullough", "ron chernow", "walter isaacson",
     "eduardo galeano", "howard zinn", "herodotus", "tucidides",
     // Ficção histórica
@@ -410,8 +353,6 @@ const CATEGORY_MAPPING = {
     "karl marx", "friedrich engels", "adam smith", "montesquieu", "rousseau",
     // Brasileiros
     "mario sergio cortella", "leandro karnal", "luiz felipe ponde",
-    "antonio gramsci", "giorgio agamben", "roger scruton", "paulo freire",
-    "angela davis", "terry eagleton", "ayn rand",
     "clovis de barros filho", "olavo de carvalho", "marilena chaui",
     // Palavras-chave
     "filosofia", "estoicismo", "existencialismo", "metafisica", "etica",
@@ -462,7 +403,6 @@ const CATEGORY_MAPPING = {
   "Infantil": [
     // Autores
     "roald dahl", "monteiro lobato", "ana maria machado", "ruth rocha",
-    "enid blyton",
     "ziraldo", "eva furnari", "mauricio de sousa", "sylvia orthof",
     "fernanda lopes de almeida", "mary pope osborne", "r.l. stine",
     "lemony snicket", "jeff kinney", "rachel renee russell",
@@ -520,7 +460,6 @@ const CATEGORY_MAPPING = {
   // === CONTOS E CRÔNICAS (NOVA CATEGORIA) ===
   "Contos e Crônicas": [
     "luis fernando verissimo", "rubem braga", "fernando sabino",
-    "various authors", "varios autores", "antologia", "coletanea",
     "carlos heitor cony", "mario prata", "stanislaw ponte preta",
     "contos", "cronicas", "antologia", "coletanea"
   ],
@@ -539,22 +478,8 @@ function normalizeString(str) {
     .toLowerCase()
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-z0-9\s]/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
+    .replace(/[^a-z0-9\s]/g, ' ');
 }
-
-// Mapeamento de Fallback (apenas se não cair em nenhuma categoria acima)
-const FALLBACK_MAPPING = {
-  "Literatura Estrangeira": [
-    "the", "and", "of", "to", "in", "is", "you", "that", "it", "he", "was", "for", "on", "are", "as", "with", "his", "they", "i", "at", "be", "this", "have", "from", "or", "one", "had", "by", "word", "but", "not", "what", "all", "were", "we", "when", "your", "can", "said", "there", "use", "an", "each", "which", "she", "do", "how", "their", "if", "will", "up", "other", "about", "out", "many", "then", "them", "these", "so", "some", "her", "would", "make", "like", "him", "into", "time", "has", "look", "two", "more", "write", "go", "see", "number", "no", "way", "could", "people", "my", "than", "first", "water", "been", "call", "who", "oil", "its", "now", "find",
-    "story", "life", "man", "woman", "world", "love", "night", "day", "house", "home", "father", "mother", "brother", "sister", "death", "war", "god", "king", "queen", "president", "city", "country", "town", "street", "road", "school", "book", "best", "new", "great", "high", "old", "big", "small", "large", "young", "long", "little", "good", "bad", "black", "white", "red", "blue"
-  ],
-  "Literatura Brasileira": [
-    "que", "de", "e", "do", "da", "em", "um", "para", "com", "nao", "uma", "os", "no", "se", "na", "por", "mais", "as", "dos", "como", "mas", "ao", "ele", "das", "tem", "seu", "sua", "ou", "quando", "muito", "nos", "ja", "eu", "tambem", "so", "pelo", "pela", "ate", "isso", "ela", "entre", "depois", "sem", "mesmo", "aos", "ter", "seus", "quem", "nas", "me", "esse", "eles", "estao", "voce", "tinha", "foram", "essa", "num", "nem", "suas", "meu", "as", "minha", "tem", "numa", "pelos", "elas", "qual", "nos", "lhe", "deles", "essas", "esses", "pelas", "este", "dele", "tu", "te", "voces", "vos", "lhes", "meus", "minhas", "teu", "tua", "teus", "tuas", "nosso", "nossa", "nossos", "nossas", "dela", "delas", "esta", "estes", "estas", "aquele", "aquela", "aqueles", "aquelas", "isto", "aquilo", "estou", "esta", "estamos", "estao", "estive", "esteve", "estivemos", "estiveram", "estava", "estavamos", "estavam", "estivera", "estiveramos", "estiveram", "haja", "hajamos", "hajam", "houve", "houvemos", "houveram", "houvera", "houveramos", "houveram", "quis", "quisemos", "quiseram", "quisa", "quisamos", "quisam", "tiver", "tivermos", "tiverem", "haja", "hajamos", "hajam", "houver", "houvermos", "houverem",
-    "vida", "amor", "casa", "tempo", "mundo", "homem", "mulher", "crianca", "cidade", "pais", "mae", "pai", "irmao", "irma", "amigo", "trabalho", "dinheiro", "historia", "livro", "novo", "bom", "grande", "pequeno", "velho", "jovem", "alto", "baixo", "negro", "branco", "vermelho", "azul"
-  ]
-};
 
 function categorizeFile(filename) {
   const normalized = normalizeString(filename);
@@ -562,7 +487,6 @@ function categorizeFile(filename) {
   let bestCategory = 'Outros';
   let maxMatches = 0;
 
-  // 1. Primary Mapping
   for (const [category, keywords] of Object.entries(CATEGORY_MAPPING)) {
     if (category === 'Outros') continue;
 
@@ -584,24 +508,6 @@ function categorizeFile(filename) {
     }
   }
 
-  // 2. Fallback Mapping (if still Outros)
-  if (bestCategory === 'Outros') {
-    let maxFallbackMatches = 0;
-    for (const [category, keywords] of Object.entries(FALLBACK_MAPPING)) {
-      let matches = 0;
-      for (const keyword of keywords) {
-        if (normalized.includes(keyword)) {
-          matches++;
-        }
-      }
-
-      if (matches > maxFallbackMatches) {
-        maxFallbackMatches = matches;
-        bestCategory = category;
-      }
-    }
-  }
-
   return bestCategory;
 }
 
@@ -613,46 +519,57 @@ function categorizeFile(filename) {
 const content = fs.readFileSync('pub.md', 'utf8');
 const files = content.split('\n').filter(line => line.trim().endsWith('.epub'));
 
-console.log(`\n📊 ANÁLISE DE CATEGORIZAÇÃO`);
-console.log(`${'='.repeat(50)}`);
-console.log(`Total de arquivos: ${files.length}\n`);
+// Output analysis only for Outros frequencies
+// ...
 
-// Contar por categoria
-const counts = {};
 const outros = [];
-
 for (const file of files) {
-    const category = categorizeFile(file);
-    counts[category] = (counts[category] || 0) + 1;
-    if (category === 'Outros') {
-        outros.push(file);
+  if (categorizeFile(file) === 'Outros') {
+    outros.push(file);
+  }
+}
+
+console.log(`\n🔍 Analisando ${outros.length} arquivos não categorizados ('Outros')...`);
+
+// Tokenize and count
+const wordCounts = {};
+const pairCounts = {}; // To find full names "Name Surname"
+
+// Words to ignore
+const IGNORE = new Set(['epub', 'livro', 'volume', 'capitulo', 'completo', 'serie', 'trilogia', 'colecao', 'edicao', 'nova', 'novo', 'para', 'com', 'dos', 'das', 'uma', 'pelo', 'version', 'the', 'library']);
+
+for (const filename of outros) {
+  // Normalize but keep structure mostly
+  const norm = normalizeString(filename);
+  const words = norm.split(/\s+/).filter(w => w.length > 2 && !/^\d+$/.test(w) && !IGNORE.has(w));
+
+  // Count words
+  for (const w of words) {
+    wordCounts[w] = (wordCounts[w] || 0) + 1;
+  }
+
+  // Count pairs
+  for (let i = 0; i < words.length - 1; i++) {
+    const pair = `${words[i]} ${words[i + 1]}`;
+    // Filter out pairs containing ignored words
+    if (!IGNORE.has(words[i]) && !IGNORE.has(words[i + 1])) {
+      pairCounts[pair] = (pairCounts[pair] || 0) + 1;
     }
+  }
 }
 
-// Ordenar por quantidade
-const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+// Convert to array and sort
+const sortedWords = Object.entries(wordCounts).sort((a, b) => b[1] - a[1]).slice(0, 100);
+const sortedPairs = Object.entries(pairCounts).sort((a, b) => b[1] - a[1]).slice(0, 100);
 
-console.log('📁 DISTRIBUIÇÃO POR CATEGORIA:\n');
-for (const [category, count] of sorted) {
-    const percent = ((count / files.length) * 100).toFixed(1);
-    const bar = '█'.repeat(Math.floor(percent / 2));
-    console.log(`${category.padEnd(25)} ${count.toString().padStart(6)} (${percent.padStart(5)}%) ${bar}`);
-}
+console.log('\n🔤 Top 50 Palavras Frequentes em OUTROS:');
+sortedWords.slice(0, 50).forEach(([w, c], i) => {
+  // Show only if count > 10
+  if (c > 10) console.log(`${(i + 1).toString().padStart(2)}. ${w.padEnd(20)}: ${c}`);
+});
 
-const outrosPercent = ((counts['Outros'] || 0) / files.length * 100).toFixed(1);
-console.log(`\n✅ Categorizados: ${files.length - (counts['Outros'] || 0)} arquivos (${(100 - outrosPercent).toFixed(1)}%)`);
-// ... previous code ...
-console.log(`❌ Em "Outros": ${counts['Outros'] || 0} arquivos (${outrosPercent}%)`);
-
-// Save Outros to file for Author Extraction
-fs.writeFileSync('outros.json', JSON.stringify(outros, null, 2));
-console.log('\n💾 Arquivos não categorizados salvos em "outros.json" para análise profunda.');
-
-
-// Mostrar amostra de "Outros"
-if (outros.length > 0) {
-    console.log(`\n📋 AMOSTRA DE ARQUIVOS EM "OUTROS" (primeiros 20):\n`);
-    for (const file of outros.slice(0, 20)) {
-        console.log(`  - ${file}`);
-    }
-}
+console.log('\n👥 Top 100 Pares Frequentes (Possíveis Autores/Séries) em OUTROS:');
+sortedPairs.forEach(([w, c], i) => {
+  // Show only if count > 5
+  if (c > 5) console.log(`${(i + 1).toString().padStart(3)}. ${w.padEnd(30)}: ${c}`);
+});

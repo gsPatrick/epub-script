@@ -32,10 +32,18 @@ const CATEGORY_MAPPING = {
   "Fantasia": [
     // Autores internacionais
     "sarah j. maas", "holly black", "leigh bardugo", "brandon sanderson",
+    "stephanie garber", "jay kristoff", "guillermo del toro",
     "cassandra clare", "laini taylor", "victoria aveyard", "patrick rothfuss",
-    "robin hobb", "joe abercrombie", "george r.r. martin", "r.r. martin",
+    "robin hobb", "joe abercrombie", "george r.r. martin", "r.r. martin", "george martin",
     "trudi canavan", "andrzej sapkowski", "robert jordan", "terry goodkind",
     "terry pratchett", "neil gaiman", "ursula k. le guin", "j.r.r. tolkien",
+    "john flanagan", "erin hunter", "robert e. howard", "cinda williams chima",
+    "peter lerangis", "terry brooks", "a. g. howard", "oliver bowden",
+    "stephenie meyer", "stephanie meyer", "twilight", "crepusculo",
+    "assassin's creed", "patrick ness", "taran matharu", "katherine arden",
+    "mainak dhar", "tao wong", "raven kennedy",
+    "danielle paige", "jennifer a. nielsen", "elise kova", "victoria schwab",
+    "morgan rice", "anne bishop", "marion zimmer bradley", "kristin cast",
     "diana wynne jones", "juliet marillier", "maria v. snyder",
     "jennifer l. armentrout", "rebecca yarros", "maggie stiefvater", "v.e. schwab",
     "v. e. schwab", "naomi novik", "samantha shannon", "tomi adeyemi", "sabaa tahir",
@@ -53,6 +61,10 @@ const CATEGORY_MAPPING = {
     "morgan rhodes", "amy ewing", "kendare blake", "erin bowman",
     "scott lynch", "brent weeks", "peter v. brett", "brian mcclellan",
     "michael j. sullivan", "nicholas eames", "josiah bancroft", "brian staveley",
+    "morgan rice", "anne bishop", "marion zimmer bradley", "kristin cast",
+    "sapir englard", "kim richardson", "p.c. cast", "serena valentino",
+    "charlaine harris", "richelle mead", "l.j. smith", "steven erikson",
+    "mark lawrence", "garth nix", "jonathan stroud", "rf kuang",
     // Autores brasileiros
     "eduardo spohr", "raphael draccon", "affonso solano", "ana lúcia merege",
     "andre vianco", "leonel caldela", "felipe castilho", "tiago toy",
@@ -69,14 +81,25 @@ const CATEGORY_MAPPING = {
     "batalha do apocalipse", "filhos do eden", "legado de orisha",
     "magisterium", "ordem da escuridao", "bruxa negra", "estranho sonhador",
     "fundadores", "rastro de sangue", "sonhador", "prazeres violentos",
+    "os lobos do milenio", "millenium wolves", "house of night", "vampire academy",
     // Palavras-chave
-    "dragao", "feiticeira", "bruxo", "elfo", "magia", "reino encantado"
+    "dragao", "feiticeira", "bruxo", "elfo", "magia", "reino encantado", "lobisomem", "vampiro",
+    "dragon", "witch", "wizard", "fae", "fada", "kingdom", "reino", "throne", "trono",
+    "sword", "espada", "chronicles", "cronicas", "shadow", "sombra", "blood", "sangue",
+    "curse", "maldicao", "crown", "coroa", "queen", "rainha", "king", "rei", "prince", "principe",
+    "princess", "princesa", "beast", "fera", "fantasy", "fantasia"
   ],
 
   // === ROMANCE ===
   "Romance": [
     // Autores contemporâneos internacionais
     "colleen hoover", "anna todd", "nicholas sparks", "sally thorne",
+    "lauren layne", "mercedes ron", "sveva casati modignani", "abby jimenez",
+    "ruby dixon", "suzanne enoch", "francine rivers", "elena ferrante",
+    "paul auster", "jostein gaarder", "bella jewel",
+    "lauren layne", "mercedes ron", "sveva casati modignani", "abby jimenez",
+    "ruby dixon", "suzanne enoch", "francine rivers", "elena ferrante",
+    "paul auster", "jostein gaarder", "bella jewel",
     "christina lauren", "ali hazelwood", "emily henry", "tessa bailey",
     "helena hunting", "penelope douglas", "elle kennedy", "lj shen",
     "monica murphy", "brittainy c. cherry", "mia sheridan", "tillie cole",
@@ -92,6 +115,11 @@ const CATEGORY_MAPPING = {
     "carrie ann ryan", "corinne michaels", "catherine bybee", "marie force",
     "jay crownover", "jamie shaw", "j. lynn", "jennifer armentrout",
     "sarina bowen", "elle casey", "bella andre", "melody anne",
+    "meg cabot", "lucinda riley", "linda lael miller", "emma leech",
+    "regine abel", "vi keeland", "penelope ward", "t.l. swan", "j.t. geissinger",
+    "alessandra torre", "pam godwin", "k. bromberg", "laurelin paige",
+    "maya banks", "katy evans", "alice clayton", "christina ross",
+    "madeleine gray", "carly phillips", "erika wilde", "lisa renee jones",
     // Autores históricos
     "julia quinn", "lisa kleypas", "eloisa james", "sarah maclean",
     "tessa dare", "lorraine heath", "mary balogh", "courtney milan",
@@ -101,6 +129,7 @@ const CATEGORY_MAPPING = {
     "sherry thomas", "carolyn jewel", "anne gracie", "olivia drake",
     "laura lee guhrke", "kerrigan byrne", "scarlett peckham", "joanna bourne",
     "beverley jenkins", "alyssa cole", "courtney milan", "cat sebastian",
+    "simon scarrow", "philippa gregory", "diana gabaldon", "outlander",
     // Harlequin e outros
     "candace camp", "jess michaels", "blythe gifford", "marguerite kaye",
     "michelle willingham", "carol townend", "joanna fulford", "denise lynn",
@@ -109,25 +138,38 @@ const CATEGORY_MAPPING = {
     "erin watt", "kathleen woodiwiss", "bertrice small", "virginia henley",
     "beatriz williams", "pam jenoff", "kate quinn", "ariel lawhon",
     // Autoras brasileiras
-    "zibia gasparetto", "martha medeiros", "clarice lispector",
+    "zibia gasparetto", "martha medeiros", "clarice lispector", "carina rissi",
+    "paula pimenta", "babi dewet", "bruna vieira", "thalita reboucas",
     // J.R. Ward e paranormal romance
     "j.r. ward", "jr ward", "irmandade da adaga negra", "sherrilyn kenyon",
     "kresley cole", "gena showalter", "nalini singh", "larissa ione",
-    "lara adrian", "cynthia eden", "alexandra ivy", "lynsay sands",
+    "j. r. ward", "c. s. lewis", "c.s. lewis", "lara adrian", "cynthia eden",
+    "alexandra ivy", "lynsay sands",
+    "christine feehan", "jeaniene frost", "kelley armstrong", "patricia briggs",
+    "fiona grace", "charlaine harris", "anne bishop", "kristen ashley",
+    "nalini singh", "laurell k. hamilton", "faith hunter", "ilone andrews",
     // Séries
     "bridgertons", "ravenels", "wallflowers", "hathaways", "spindle cove",
     "duque e eu", "visconde", "condessa", "lorde", "lady",
     "westcott", "travis family", "travis #", "girl meets duke",
     "os rokesbys", "dois duques", "numeros do amor", "irmaos macgregor",
     "sins for all seasons", "orfaos de saint james", "guilty series",
+    "royal brotherhood", "rrh #",
     // Palavras-chave
-    "noiva", "duque", "seducao", "paixao", "amor", "romance"
+    "noiva", "duque", "seducao", "paixao", "amor", "romance", "clube do livro",
+    "love", "heart", "coracao", "kiss", "beijo", "bride", "wedding", "casamento",
+    "billionaire", "bilionario", "secret", "segredo", "desire", "desejo",
+    "temptation", "tentacao", "promise", "promessa", "forever", "sempre",
+    "dream", "sonho", "viscount", "visconde", "earl", "conde", "marquess", "marques",
+    "scandal", "escandalo", "affair", "caso", "lover", "amante", "wife", "esposa",
+    "husband", "marido"
   ],
 
   // === JOVEM ADULTO (YA) ===
   "Jovem Adulto": [
     // Autores
     "suzanne collins", "veronica roth", "rainbow rowell",
+    "jennifer lynn barnes", "michael grant", "ransom riggs", "kiersten white",
     "john green", "jenny han", "becky albertalli", "adam silvera",
     "angie thomas", "nicola yoon", "stephanie perkins", "morgan matson",
     "kasie west", "jennifer niven", "gayle forman", "colleen houck",
@@ -143,20 +185,27 @@ const CATEGORY_MAPPING = {
     "e. lockhart", "libba bray", "maureen johnson", "erin watt",
     "leila sales", "jennifer echols", "miranda kenneally", "katie cotugno",
     "alison cherry", "kristin rae", "jenn bennett", "jenna evans welch",
+    "holly jackson", "karen mcmanus", "alice oseman", "katrina kahler",
+    "pittacus lore", "rebecca hanover", "manu gavassi",
     // Séries
     "era outra vez", "the 100", "jogos vorazes", "divergente", "selecao",
     "maze runner", "estilhaca-me", "shatter me", "pretty little liars", "pll",
     "crepusculo", "twilight", "fallen", "hush hush", "renegados", "simon snow",
     "scythe", "ceifador", "stars", "after", "barraca do beijo",
-    "para todos os garotos", "diario de um banana",
+    "para todos os garotos", "diario de um banana", "os similares",
+    "garotos corvos", "corte de chamas", "novembro 9",
     // Palavras-chave
-    "young adult", "ya"
+    "young adult", "ya", "adolescente"
   ],
 
   // === SUSPENSE E THRILLER ===
   "Suspense e Thriller": [
     // Autores
     "gillian flynn", "paula hawkins", "ruth ware", "a.j. finn",
+    "joel dicker", "robin cook", "john le carre", "scott turow",
+    "anthony horowitz", "leslie wolfe",
+    "joel dicker", "robin cook", "john le carre", "scott turow",
+    "anthony horowitz", "leslie wolfe",
     "b.a. paris", "shari lapena", "karin slaughter", "lisa gardner",
     "tess gerritsen", "michael connelly", "lee child", "harlan coben",
     "james patterson", "dan brown", "john grisham", "jo nesbo",
@@ -170,10 +219,17 @@ const CATEGORY_MAPPING = {
     "catherine steadman", "daniel silva", "brad thor", "vince flynn",
     "brad meltzer", "david baldacci", "nelson demille", "jack mars",
     "robert ludlum", "frederick forsyth", "ken follett", "jack higgins",
+    "daniel cole", "m. j. arlidge", "lucy foley", "richard morgan", "peter clines",
+    "freida mcfadden", "patrick logan", "sidney sheldon", "jeffrey archer",
+    "james rollins", "robert bryndza", "luke jennings", "killing eve",
     // Autores brasileiros
     "raphael montes", "ilana casoy", "patricia melo",
     // Palavras-chave
-    "thriller", "suspense", "assassino", "serial killer", "fbi", "cia"
+    "thriller", "suspense", "assassino", "serial killer", "fbi", "cia",
+    "murder", "assassinato", "kill", "morte", "dead", "morto", "death",
+    "girl", "garota", "gone", "desaparecida", "lies", "mentiras",
+    "truth", "verdade", "detective", "detetive", "crime", "investigation", "investigacao",
+    "blood", "sangue", "bones", "ossos", "grave", "tumulo", "nightmare", "pesadelo"
   ],
 
   // === POLICIAL E MISTÉRIO ===
@@ -186,6 +242,8 @@ const CATEGORY_MAPPING = {
     "p.d. james", "ruth rendell", "minette walters", "mo hayder",
     "tana french", "denise mina", "stuart macbride", "mark billingham",
     "peter james", "simon kernick", "remy eyssen", "jussi adler-olsen",
+    "maurice leblanc", "arsene lupin", "arturo perez-reverte", "perez-reverte",
+    "gk chesterton", "wilkie collins", "edgar wallace", "rex stout",
     // Séries
     "cormoran strike", "serie mortal", "j.d. robb", "j. d. robb",
     "clube das mulheres", "detetive cormoran", "inspector lynley",
@@ -205,17 +263,21 @@ const CATEGORY_MAPPING = {
     "john saul", "bentley little", "jack ketchum", "richard laymon",
     "brian keene", "jonathan maberry", "f. paul wilson", "robert mccammon",
     "dan simmons", "laird barron", "john langan", "thomas ligotti",
+    "scott cawthon", "darcy coates", "junji ito", "caitlin r. kiernan",
     // Autores brasileiros
     "andre vianco", "raphael draccon", "rodrigo de oliveira",
     // Palavras-chave
     "horror", "terror", "assombracao", "fantasma", "monstro", "vampiro",
-    "demonio", "maldito", "pesadelo", "sobrenatural", "morte", "zumbi"
+    "demonio", "maldito", "pesadelo", "sobrenatural", "morte", "zumbi",
+    "fnaf", "five nights at freddys", "ghost", "haunted", "assombrado",
+    "devil", "diabo", "evil", "mal", "darkness", "escuridao", "fear", "medo"
   ],
 
   // === FICÇÃO CIENTÍFICA ===
   "Ficção Científica": [
     // Autores clássicos
     "frank herbert", "isaac asimov", "arthur c. clarke", "philip k. dick",
+    "kurt vonnegut", "amie kaufman", "scott westerfeld",
     "ray bradbury", "ursula k. le guin", "william gibson", "dan simmons",
     "orson scott card", "ann leckie", "n.k. jemisin", "liu cixin", "cixin liu",
     "andy weir", "blake crouch", "margaret atwood",
@@ -226,9 +288,11 @@ const CATEGORY_MAPPING = {
     "iain m. banks", "kim stanley robinson", "neal stephenson", "ted chiang",
     "octavia butler", "samuel r. delany", "connie willis", "lois mcmaster bujold",
     "john scalzi", "james s.a. corey", "becky chambers", "martha wells",
+    "matt haig", "douglas adams", "star wars", "timothy zahn",
     // Séries
     "duna", "fundacao", "2001", "expanse", "three body problem",
     "problema dos tres corpos", "floresta sombria", "ender", "marte",
+    "guia do mochileiro",
     // Palavras-chave
     "ficcao cientifica", "sci-fi", "espacial", "alienigena", "futuro", "distopia"
   ],
@@ -243,11 +307,12 @@ const CATEGORY_MAPPING = {
     "jack canfield", "wayne dyer", "deepak chopra", "don miguel ruiz",
     "eckhart tolle", "rhonda byrne", "louise hay", "gabor mate",
     "brene brown", "adam grant", "angela duckworth", "grit",
-    "charles duhigg", "atomic habits", "poder do habito",
+    "charles duhigg", "atomic habits", "poder do habito", "karen rinaldi",
     // Autores brasileiros
     "paulo vieira", "augusto cury", "flavio augusto", "lair ribeiro",
     "gustavo cerbasi", "roberto shinyashiki", "renato cardoso",
-    "cristiane cardoso", "tiago brunet", "deive leonardo",
+    "cristiane cardoso", "tiago brunet", "deive leonardo", "thiago nigro",
+    "joel jota", "primo rico",
     // Palavras-chave
     "autoajuda", "habitos", "produtividade", "sucesso", "mindset",
     "motivacao", "superacao", "lideranca", "inteligencia emocional",
@@ -259,24 +324,44 @@ const CATEGORY_MAPPING = {
     // Autores brasileiros
     "machado de assis", "jose saramago", "jorge amado", "eca de queiros",
     "fernando pessoa", "clarice lispector", "guimaraes rosa", "graciliano ramos",
+    "ian mcewan", "milan kundera", "william faulkner", "graham greene",
+    "philip roth", "john steinbeck", "italo calvino", "jose eduardo agualusa",
+    "cormac mccarthy", "toni morrison", "joseph conrad", "anton tchekhov",
+    "luigi pirandello", "alessandro baricco", "julian barnes", "elizabeth strout",
+    "voltaire", "john fante", "henry miller", "jack kerouac", "don delillo", "sally rooney",
+    "jonathan franzen", "michel houellebecq", "stephen chbosky", "patrick modiano", "georges simenon",
+    "sandor marai", "anais nin", "lionel shriver", "chimamanda ngozi adichie",
+    "bertrand russell", "alain de botton", "elif shafak", "brian weiss", "theodore dalrymple",
+    "drauzio varella",
+    "fredrik backman", "jon fosse", "primo levi", "orhan pamuk",
     "jose de alencar", "aluisio azevedo", "castro alves", "olavo bilac",
     "gonçalves dias", "manuel bandeira", "carlos drummond", "cecilia meireles",
     "rachel de queiroz", "lygia fagundes telles", "rubem fonseca",
+    "monteiro lobato", "lima barreto", "euclides da cunha",
+    "ariano suassuna", "joao cabral de melo neto",
     // Autores internacionais
     "jane austen", "charles dickens", "leo tolstoy", "fyodor dostoevsky",
+    "louisa may alcott", "jack london", "vladimir nabokov", "kazuo ishiguro",
+    "antonio lobo antunes",
     "fiodor dostoievski", "dostoievski", "franz kafka", "virginia woolf",
     "ernest hemingway", "f. scott fitzgerald", "oscar wilde", "mark twain",
     "victor hugo", "honore de balzac", "gustave flaubert", "stendhal",
     "emily bronte", "charlotte bronte", "thomas hardy", "george eliot",
     "henry james", "herman melville", "nathaniel hawthorne",
     "gabriel garcia marquez", "jorge luis borges", "julio cortazar",
-    "mario vargas llosa", "pablo neruda", "octavio paz", "isabel allende"
+    "mario vargas llosa", "pablo neruda", "octavio paz", "isabel allende",
+    "lucy maud montgomery", "l.m. montgomery", "anne de green gables",
+    "william shakespeare", "thomas mann", "alexandre dumas", "hermann hesse",
+    "umberto eco", "carlos ruiz zafon", "liev tolstoi", "tolstoi",
+    "mia couto", "valter hugo mae", "haruki murakami", "charles bukowski",
+    "marcel proust", "james joyce", "homero", "dante alighieri"
   ],
 
   // === NEGÓCIOS E ECONOMIA ===
   "Negócios e Economia": [
     // Autores
     "peter drucker", "robert kiyosaki", "warren buffett", "ray dalio",
+    "nassim nicholas taleb", "a arte da guerra", "sun tzu", "napoleon hill",
     "nassim taleb", "benjamin graham", "phil knight", "reed hastings",
     "eric ries", "peter thiel", "tim ferriss", "gary vaynerchuk",
     "seth godin", "malcolm gladwell", "daniel kahneman", "richard thaler",
@@ -286,7 +371,11 @@ const CATEGORY_MAPPING = {
     // Palavras-chave
     "negocios", "empreendedorismo", "startups", "investimento",
     "financas", "marketing", "gestao", "bolsa", "dinheiro",
-    "economia", "lideranca empresarial", "vendas", "estrategia"
+    "economia", "lideranca empresarial", "vendas", "estrategia",
+    "business", "management", "leadership", "money", "investing",
+    "finance", "sales", "strategy", "brand", "marca", "startup",
+    "mike michalowicz", "profit first", "lucro primeiro", "mark wolynn",
+    "sepultura", "biography", "music", "banda"
   ],
 
   // === RELIGIÃO E ESPIRITUALIDADE ===
@@ -295,13 +384,16 @@ const CATEGORY_MAPPING = {
     "c.s. lewis", "timothy keller", "max lucado", "joyce meyer",
     "john piper", "padre marcelo rossi", "papa francisco", "john macarthur",
     "charles spurgeon", "billy graham", "rick warren", "john maxwell",
+    "comentarios expositivos hagnos", "a cabana", "william p. young",
     "lee strobel", "josh mcdowell", "ravi zacharias", "william lane craig",
+    "tim lahaye", "edir macedo", "silas malafaia", "rr soares",
     // Autores espíritas
     "allan kardec", "chico xavier", "zibia gasparetto", "divaldo franco",
     "richard simonetti", "herminio miranda", "haroldo dutra dias",
+    "yvonne do amaral pereira", "emmanuel", "andre luiz",
     // Outros
     "dalai lama", "thich nhat hanh", "eckhart tolle", "deepak chopra",
-    "paulo coelho", "monja coen", "osho", "alan watts",
+    "paulo coelho", "monja coen", "osho", "alan watts", "krishnamurti",
     // Palavras-chave
     "biblia", "jesus cristo", "oracao", "igreja", "evangelico",
     "catolico", "espirita", "budismo", "espiritualidade", "patristica",
@@ -313,18 +405,21 @@ const CATEGORY_MAPPING = {
     // Autores brasileiros
     "laurentino gomes", "eduardo bueno", "mary del priore", "boris fausto",
     "lilia schwarcz", "jose murilo de carvalho", "marcos napolitano",
+    "elio gaspari", "pedro doria", "leandro narlocus",
     // Autores internacionais
     "yuval noah harari", "antony beevor", "ian kershaw", "max hastings",
     "dan jones", "tom holland", "simon sebag montefiore", "niall ferguson",
-    "jared diamond", "eric hobsbawm", "fernand braudel", "barbara tuchman",
+    "jared diamond", "eric hobsbawm", "hobsbawm", "fernand braudel", "barbara tuchman",
     "doris kearns goodwin", "david mccullough", "ron chernow", "walter isaacson",
+    "eduardo galeano", "howard zinn", "herodotus", "tucidides",
     // Ficção histórica
     "bernard cornwell", "ken follett", "hilary mantel", "philippa gregory",
     "kate quinn", "kristin hannah", "paula mclain", "sarah dunant",
+    "conn iggulden", "maurice druon",
     // Palavras-chave
-    "guerra mundial", "segunda guerra", "primeira guerra",
+    "historia", "history", "guerra mundial", "segunda guerra", "primeira guerra",
     "imperio romano", "1808", "1822", "1889", "1964", "historia do brasil",
-    "revolucao francesa", "idade media"
+    "revolucao francesa", "idade media", "ditadura", "nazismo", "holocausto"
   ],
 
   // === FILOSOFIA ===
@@ -338,11 +433,16 @@ const CATEGORY_MAPPING = {
     // Contemporâneos
     "sartre", "camus", "foucault", "deleuze", "derrida",
     "slavoj zizek", "byung-chul han", "hannah arendt", "simone de beauvoir",
+    "zygmunt bauman", "bell hooks", "judith butler", "noam chomsky",
+    "karl marx", "friedrich engels", "adam smith", "montesquieu", "rousseau",
     // Brasileiros
     "mario sergio cortella", "leandro karnal", "luiz felipe ponde",
-    "clovis de barros filho", "olavo de carvalho",
+    "antonio gramsci", "giorgio agamben", "roger scruton", "paulo freire",
+    "angela davis", "terry eagleton", "ayn rand",
+    "clovis de barros filho", "olavo de carvalho", "marilena chaui",
     // Palavras-chave
-    "filosofia", "estoicismo", "existencialismo", "metafisica", "etica"
+    "filosofia", "estoicismo", "existencialismo", "metafisica", "etica",
+    "politica", "sociologia"
   ],
 
   // === PSICOLOGIA ===
@@ -353,9 +453,12 @@ const CATEGORY_MAPPING = {
     "martin seligman", "daniel kahneman", "mihaly csikszentmihalyi",
     "howard gardner", "robert cialdini", "dan ariely", "daniel gilbert",
     "steven pinker", "jonathan haidt", "paul ekman", "amy cuddy",
+    "oliver sacks", "jordan peterson", "brene brown", "esther perel",
+    "andrew solomon", "karen horney", "melanie klein", "jacques lacan",
     // Palavras-chave
     "psicologia", "psicanalise", "terapia", "ansiedade", "depressao",
-    "trauma", "inconsciente", "cognitivo", "comportamento", "mente"
+    "trauma", "inconsciente", "cognitivo", "comportamento", "mente",
+    "neurociencia", "cerebro"
   ],
 
   // === ROMANCE ERÓTICO ===
@@ -365,9 +468,11 @@ const CATEGORY_MAPPING = {
     "pepper winters", "kitty thomas", "sierra simone", "alexa riley",
     "jade west", "pam godwin", "skye warren", "cd reiss",
     "kendall ryan", "lauren blakely", "vi keeland", "penelope ward",
+    "rina kent", "audrey carlan", "megan maxwell", "elle kennedy",
+    "sarina bowen", "helen hardt", "laurelin paige", "blair holden",
     // Palavras-chave
     "cinquenta tons", "fifty shades", "dark romance", "erotico",
-    "bdsm", "submissa", "dominador", "proibido"
+    "bdsm", "submissa", "dominador", "proibido", "hot"
   ],
 
   // === HQs E MANGÁS ===
@@ -376,57 +481,80 @@ const CATEGORY_MAPPING = {
     "hq", "manga", "graphic novel", "quadrinho", "comic", "marvel",
     "dc comics", "batman", "spider-man", "x-men", "naruto", "one piece",
     "demon slayer", "attack on titan", "my hero academia", "death note",
-    "turma da monica", "mauricio de sousa"
+    "turma da monica", "mauricio de sousa", "neil gaiman", "sandman",
+    "alan moore", "frank miller", "stan lee"
   ],
 
   // === INFANTIL ===
   "Infantil": [
     // Autores
     "roald dahl", "monteiro lobato", "ana maria machado", "ruth rocha",
+    "enid blyton",
     "ziraldo", "eva furnari", "mauricio de sousa", "sylvia orthof",
     "fernanda lopes de almeida", "mary pope osborne", "r.l. stine",
     "lemony snicket", "jeff kinney", "rachel renee russell",
+    "dr. seuss", "beatrix potter", "lewis carroll", "a.a. milne",
+    "antoine de saint-exupery", "felix salten",
     // Palavras-chave
     "infantil", "fabula", "disney", "pequeno principe", "crianca",
-    "sitio do picapau", "contos de fadas", "diario de um banana"
+    "sitio do picapau", "contos de fadas", "diario de um banana", "bambi"
   ],
 
   // === SAÚDE E BEM-ESTAR ===
   "Saúde e Bem-Estar": [
     // Palavras-chave
     "medicina", "nutricao", "emagrecimento", "fitness", "yoga", "jejum",
-    "dieta", "low carb", "whole30", "saude", "corpo", "mente sa"
+    "dieta", "low carb", "whole30", "saude", "corpo", "mente sa",
+    "enfermagem", "anatomia", "fisiologia", "doenca", "cura"
   ],
 
   // === DIREITO ===
   "Direito": [
-    "codigo civil", "codigo penal", "constituicao", "advocacia",
-    "jurisprudencia", "oab", "direito constitucional", "processo civil",
-    "processo penal", "direito administrativo", "direito tributario"
+    // Palavras-chave
+    "direito", "juridico", "lei", "codigo civil", "codigo penal",
+    "constituicao", "advocacia", "processo", "curso de direito",
+    "vademecum", "oab", "concurso", "juridica", "legislacao"
   ],
 
   // === CULINÁRIA ===
   "Culinária": [
-    "receita", "culinaria", "gastronomia", "cozinha", "panelinha",
-    "chef", "sobremesa", "bolo", "confeitaria"
+    // Autores
+    "rita lobo", "jamie oliver", "paola carosella", "gordon ramsay",
+    "anthony bourdain", "nigella lawson", "palmirinha",
+    // Palavras-chave
+    "receita", "culinaria", "gastronomia", "cozinha", "chef", "bolo", "panelinha",
+    "alimentacao", "vegana", "vegetariana", "churrasco"
   ],
 
   // === CIÊNCIAS ===
   "Ciências": [
-    "fisica quantica", "biologia molecular", "astronomia", "neurociencia",
-    "einstein", "hawking", "cosmos", "cerebro", "dna", "evolucao",
-    "carl sagan", "stephen hawking", "richard dawkins", "neil degrasse"
+    // Autores
+    "carl sagan", "stephen hawking", "neil degrasse tyson", "richard dawkins",
+    "charles darwin", "albert einstein", "richard feynman", "marie curie",
+    "michio kaku", "brian greene", "bill bryson",
+    // Palavras-chave
+    "fisica", "quimica", "biologia", "matematica", "astronomia",
+    "neurociencia", "darwin", "einstein", "hawking", "universo", "cosmos",
+    "evolucao", "ciencia"
   ],
 
   // === BIOGRAFIAS ===
   "Biografias": [
     "biografia", "autobiografia", "memorias", "vida de",
-    "@lerbiografias", "historia de vida"
+    "minha historia", "diario de", "biography", "memoir"
   ],
 
+  // === CONTOS E CRÔNICAS (NOVA CATEGORIA) ===
+  "Contos e Crônicas": [
+    "luis fernando verissimo", "rubem braga", "fernando sabino",
+    "various authors", "varios autores", "antologia", "coletanea",
+    "carlos heitor cony", "mario prata", "stanislaw ponte preta",
+    "contos", "cronicas", "antologia", "coletanea"
+  ],
+
+  // === OUTROS (FALLBACK) ===
   "Outros": []
 };
-
 // ============================================================
 // FUNÇÕES AUXILIARES
 // ============================================================
@@ -438,8 +566,22 @@ function normalizeString(str) {
     .toLowerCase()
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-z0-9\s]/g, ' ');
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
+
+// Mapeamento de Fallback (apenas se não cair em nenhuma categoria acima)
+const FALLBACK_MAPPING = {
+  "Literatura Estrangeira": [
+    "the", "and", "of", "to", "in", "is", "you", "that", "it", "he", "was", "for", "on", "are", "as", "with", "his", "they", "i", "at", "be", "this", "have", "from", "or", "one", "had", "by", "word", "but", "not", "what", "all", "were", "we", "when", "your", "can", "said", "there", "use", "an", "each", "which", "she", "do", "how", "their", "if", "will", "up", "other", "about", "out", "many", "then", "them", "these", "so", "some", "her", "would", "make", "like", "him", "into", "time", "has", "look", "two", "more", "write", "go", "see", "number", "no", "way", "could", "people", "my", "than", "first", "water", "been", "call", "who", "oil", "its", "now", "find",
+    "story", "life", "man", "woman", "world", "love", "night", "day", "house", "home", "father", "mother", "brother", "sister", "death", "war", "god", "king", "queen", "president", "city", "country", "town", "street", "road", "school", "book", "best", "new", "great", "high", "old", "big", "small", "large", "young", "long", "little", "good", "bad", "black", "white", "red", "blue"
+  ],
+  "Literatura Brasileira": [
+    "que", "de", "e", "do", "da", "em", "um", "para", "com", "nao", "uma", "os", "no", "se", "na", "por", "mais", "as", "dos", "como", "mas", "ao", "ele", "das", "tem", "seu", "sua", "ou", "quando", "muito", "nos", "ja", "eu", "tambem", "so", "pelo", "pela", "ate", "isso", "ela", "entre", "depois", "sem", "mesmo", "aos", "ter", "seus", "quem", "nas", "me", "esse", "eles", "estao", "voce", "tinha", "foram", "essa", "num", "nem", "suas", "meu", "as", "minha", "tem", "numa", "pelos", "elas", "qual", "nos", "lhe", "deles", "essas", "esses", "pelas", "este", "dele", "tu", "te", "voces", "vos", "lhes", "meus", "minhas", "teu", "tua", "teus", "tuas", "nosso", "nossa", "nossos", "nossas", "dela", "delas", "esta", "estes", "estas", "aquele", "aquela", "aqueles", "aquelas", "isto", "aquilo", "estou", "esta", "estamos", "estao", "estive", "esteve", "estivemos", "estiveram", "estava", "estavamos", "estavam", "estivera", "estiveramos", "estiveram", "haja", "hajamos", "hajam", "houve", "houvemos", "houveram", "houvera", "houveramos", "houveram", "quis", "quisemos", "quiseram", "quisa", "quisamos", "quisam", "tiver", "tivermos", "tiverem", "haja", "hajamos", "hajam", "houver", "houvermos", "houverem",
+    "vida", "amor", "casa", "tempo", "mundo", "homem", "mulher", "crianca", "cidade", "pais", "mae", "pai", "irmao", "irma", "amigo", "trabalho", "dinheiro", "historia", "livro", "novo", "bom", "grande", "pequeno", "velho", "jovem", "alto", "baixo", "negro", "branco", "vermelho", "azul"
+  ]
+};
 
 function categorizeFile(filename) {
   const normalized = normalizeString(filename);
@@ -447,6 +589,7 @@ function categorizeFile(filename) {
   let bestCategory = 'Outros';
   let maxMatches = 0;
 
+  // 1. Primary Mapping
   for (const [category, keywords] of Object.entries(CATEGORY_MAPPING)) {
     if (category === 'Outros') continue;
 
@@ -463,6 +606,24 @@ function categorizeFile(filename) {
       bestCategory = category;
     } else if (matches === maxMatches && matches > 0) {
       if (category < bestCategory) {
+        bestCategory = category;
+      }
+    }
+  }
+
+  // 2. Fallback Mapping (if still Outros)
+  if (bestCategory === 'Outros') {
+    let maxFallbackMatches = 0;
+    for (const [category, keywords] of Object.entries(FALLBACK_MAPPING)) {
+      let matches = 0;
+      for (const keyword of keywords) {
+        if (normalized.includes(keyword)) {
+          matches++;
+        }
+      }
+
+      if (matches > maxFallbackMatches) {
+        maxFallbackMatches = matches;
         bestCategory = category;
       }
     }

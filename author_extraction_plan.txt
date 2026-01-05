@@ -1,0 +1,31 @@
+const fs = require('fs');
+
+// Should be synced with server.js, but for this specific extraction we mainly need the categorize function logic
+// We'll read the latest analyze-categories.js to get the latest MAPPING to know what is ALREADY categorized
+// Actually we can just copy the mapping approach or reuse analyze-categories.js module if it was exported.
+// Since it's not, we'll just replicate the reading of pub.md and reuse the logic.
+// Efficient way: regex match for " - " which usually separates Title - Author or Author - Title.
+
+// Basic normalization
+function normalizeString(str) {
+    return str.toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9\s]/g, ' ');
+}
+
+const content = fs.readFileSync('pub.md', 'utf8');
+const files = content.split('\n').filter(line => line.trim().endsWith('.epub'));
+
+// We need to know which ones are 'Outros' to analyze ONLY them
+// We need the categorization logic. 
+// Let's assume we can't easily import, so we'll grab lines that don't match known keywords.
+// Wait, I should use the `analyze-categories.js` file to validly filter 'Outros'.
+// I'll read `analyze-categories.js` content, eval it (risky but local) or just modify it.
+
+// Better: I'll assume that if I extract a candidate author name, and I check if it's already in the mapping...
+// But I don't have the mapping here.
+// I will just modify `analyze-categories.js` to dump the `Outros` list to a JSON file.
+
+// Step 1: Dump Outros
+// We'll use a temporary script modification to analyze-categories.js to save 'outros' array to 'outros-dump.json'.
