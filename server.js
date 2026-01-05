@@ -404,10 +404,8 @@ async function organizeEpubFiles() {
 }
 
 // ============================================================
-// FUNÇÃO DE ANÁLISE - GERA LISTA OTIMIZADA
+// FUNÇÃO DE ANÁLISE - GERA LISTA SIMPLES
 // ============================================================
-
-const BATCH_SIZE_ANALYSIS = 500; // Arquivos por lote
 
 async function analyzeAllFiles() {
   console.log('Analisando todos os arquivos...');
@@ -419,21 +417,12 @@ async function analyzeAllFiles() {
     !item.isfolder && item.name.toLowerCase().endsWith('.epub')
   );
 
-  // Dividir em lotes
-  const batches = [];
-  for (let i = 0; i < epubFiles.length; i += BATCH_SIZE_ANALYSIS) {
-    batches.push(epubFiles.slice(i, i + BATCH_SIZE_ANALYSIS));
-  }
-
-  // Gerar lista simples para cada lote (economiza tokens)
-  const batchLists = batches.map((batch, batchIndex) => {
-    return batch.map(f => f.name).join('\n');
-  });
+  // Lista simples de todos os arquivos (um por linha)
+  const fileList = epubFiles.map(f => f.name).join('\n');
 
   return {
     totalFiles: epubFiles.length,
-    totalBatches: batches.length,
-    batchLists,
+    fileList,
     files: epubFiles.map(f => ({ name: f.name, fileid: f.fileid, size: f.size }))
   };
 }
@@ -708,7 +697,7 @@ app.get('/run', async (req, res) => {
   }
 });
 
-// Analisar arquivos - gera lista otimizada em lotes
+// Analisar arquivos - gera lista simples
 app.get('/analyze', async (req, res) => {
   if (!authToken) {
     return res.redirect('/');
@@ -716,22 +705,6 @@ app.get('/analyze', async (req, res) => {
 
   try {
     const analysis = await analyzeAllFiles();
-
-    // Gerar HTML dos lotes
-    let batchesHtml = '';
-    analysis.batchLists.forEach((list, index) => {
-      const filesInBatch = list.split('\n').length;
-      batchesHtml += `
-        <div class="batch-card">
-          <div class="batch-header">
-            <h3>📦 Lote ${index + 1} de ${analysis.totalBatches}</h3>
-            <span class="batch-count">${filesInBatch} arquivos</span>
-          </div>
-          <button class="btn btn-copy btn-small" onclick="copyBatch(${index})">📋 Copiar Lote ${index + 1}</button>
-          <div class="batch-content" id="batch-${index}">${list.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
-        </div>
-      `;
-    });
 
     res.send(`
       <!DOCTYPE html>
@@ -749,7 +722,7 @@ app.get('/analyze', async (req, res) => {
             color: #fff;
             padding: 20px;
           }
-          .container { max-width: 1200px; margin: 0 auto; }
+          .container { max-width: 1000px; margin: 0 auto; }
           h1 { text-align: center; margin-bottom: 30px; color: #00d9ff; }
           h2 { margin-bottom: 15px; color: #00d9ff; }
           .card {
@@ -761,61 +734,35 @@ app.get('/analyze', async (req, res) => {
           }
           .btn {
             display: inline-block;
-            padding: 12px 24px;
+            padding: 15px 30px;
             background: linear-gradient(135deg, #00d9ff 0%, #0077ff 100%);
             color: #fff;
             text-decoration: none;
             border-radius: 8px;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 16px;
             border: none;
             cursor: pointer;
             margin-right: 10px;
             margin-bottom: 10px;
           }
-          .btn:hover { opacity: 0.9; }
+          .btn:hover { opacity: 0.9; transform: translateY(-2px); }
           .btn-copy { background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); }
-          .btn-small { padding: 8px 16px; font-size: 12px; }
-          .prompt-box {
+          .btn-list { background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%); }
+          .text-box {
             background: #0a0a0f;
             padding: 15px;
             border-radius: 8px;
             font-family: monospace;
-            font-size: 13px;
+            font-size: 12px;
             white-space: pre-wrap;
-            border: 1px solid #00d9ff;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid rgba(255,255,255,0.2);
             margin: 15px 0;
           }
-          .batch-card {
-            background: rgba(0,0,0,0.3);
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 1px solid rgba(255,255,255,0.1);
-          }
-          .batch-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-          }
-          .batch-header h3 { color: #fff; font-size: 16px; }
-          .batch-count { color: #00ff88; font-size: 14px; }
-          .batch-content {
-            background: #0a0a0f;
-            padding: 10px;
-            border-radius: 4px;
-            font-family: monospace;
-            font-size: 11px;
-            max-height: 150px;
-            overflow-y: auto;
-            white-space: pre-wrap;
-            margin-top: 10px;
-          }
-          .stats { color: #00ff88; font-size: 18px; }
-          .instructions { background: rgba(0,217,255,0.1); padding: 15px; border-radius: 8px; margin: 15px 0; }
-          .instructions ol { margin-left: 20px; }
-          .instructions li { margin: 8px 0; }
+          .prompt-box { border-color: #00d9ff; }
+          .stats { color: #00ff88; font-size: 20px; margin-bottom: 15px; }
         </style>
       </head>
       <body>
@@ -824,27 +771,21 @@ app.get('/analyze', async (req, res) => {
           
           <div class="card">
             <h2>📈 Estatísticas</h2>
-            <p class="stats">Total: <strong>${analysis.totalFiles}</strong> arquivos em <strong>${analysis.totalBatches}</strong> lotes de 500</p>
+            <p class="stats">Total: <strong>${analysis.totalFiles}</strong> arquivos EPUB</p>
           </div>
 
           <div class="card">
-            <h2>📝 Passo 1: Copie o Prompt</h2>
-            <p style="margin-bottom: 10px;">Copie este prompt e cole na IA ANTES de colar a lista de arquivos:</p>
+            <h2>📝 Prompt</h2>
+            <p style="margin-bottom: 10px;">Copie e cole na IA junto com a lista de arquivos:</p>
             <button class="btn btn-copy" onclick="copyPrompt()">📋 Copiar Prompt</button>
-            <div class="prompt-box" id="prompt-content">${CLASSIFICATION_PROMPT.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+            <div class="text-box prompt-box" id="prompt-content">${CLASSIFICATION_PROMPT.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
           </div>
 
           <div class="card">
-            <h2>📦 Passo 2: Copie os Lotes</h2>
-            <div class="instructions">
-              <ol>
-                <li>Primeiro cole o <strong>prompt</strong> na IA</li>
-                <li>Depois cole <strong>um lote por vez</strong> e envie</li>
-                <li>A IA retornará um JSON com as classificações</li>
-                <li>Repita para todos os lotes</li>
-              </ol>
-            </div>
-            ${batchesHtml}
+            <h2>� Lista de Arquivos</h2>
+            <p style="margin-bottom: 10px;">Copie a lista completa e cole na IA:</p>
+            <button class="btn btn-list" onclick="copyList()">📋 Copiar Lista Completa (${analysis.totalFiles} arquivos)</button>
+            <div class="text-box" id="list-content">${analysis.fileList.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
           </div>
 
           <div class="card">
@@ -854,17 +795,17 @@ app.get('/analyze', async (req, res) => {
         
         <script>
           const prompt = ${JSON.stringify(CLASSIFICATION_PROMPT)};
-          const batches = ${JSON.stringify(analysis.batchLists)};
+          const fileList = ${JSON.stringify(analysis.fileList)};
           
           function copyPrompt() {
             navigator.clipboard.writeText(prompt).then(() => {
-              alert('✅ Prompt copiado! Agora cole na IA.');
+              alert('✅ Prompt copiado!');
             });
           }
           
-          function copyBatch(index) {
-            navigator.clipboard.writeText(batches[index]).then(() => {
-              alert('✅ Lote ' + (index + 1) + ' copiado! Cole na IA após o prompt.');
+          function copyList() {
+            navigator.clipboard.writeText(fileList).then(() => {
+              alert('✅ Lista copiada! (${analysis.totalFiles} arquivos)');
             });
           }
         </script>
@@ -872,7 +813,7 @@ app.get('/analyze', async (req, res) => {
       </html>
     `);
   } catch (error) {
-    res.send('<h1>Erro durante análise</h1><p>' + error.message + '</p><a href="/">Voltar</a>');
+    res.send('<h1>Erro</h1><p>' + error.message + '</p><a href="/">Voltar</a>');
   }
 });
 
