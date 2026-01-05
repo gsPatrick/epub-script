@@ -773,8 +773,8 @@ async function organizeEpubFiles() {
 
     results.logs.push(`Arquivos EPUB encontrados: ${epubFiles.length}`);
 
-    // 3. Limitar ao batch
-    const batch = epubFiles.slice(0, BATCH_SIZE);
+    // 3. Processar TODOS os arquivos (sem limite)
+    const batch = epubFiles; // Remove o slice(0, BATCH_SIZE)
     results.logs.push(`Arquivos no lote de processamento: ${batch.length}`);
 
     if (batch.length === 0) {
