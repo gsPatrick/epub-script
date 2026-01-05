@@ -793,10 +793,18 @@ async function organizeEpubFiles() {
         let currentFileName = file.name;
         let currentFileId = file.fileid;
 
+        // Helper de Log com Timestamp
+        const log = (msg) => {
+          const time = new Date().toLocaleTimeString('pt-BR');
+          const logMsg = `[${time}] ${progress} ${msg}`;
+          console.log(logMsg); // Log imediato no terminal
+          results.logs.push(logMsg);
+        };
+
         // PASSO 1: SANITIZAÇÃO
         if (currentFileName.startsWith('_')) {
           const newName = currentFileName.substring(1);
-          results.logs.push(`${progress} 🔧 Sanitizando: "${currentFileName}" → "${newName}"`);
+          log(`🔧 Sanitizando: "${currentFileName}" → "${newName}"`);
 
           await renameFile(currentFileId, { toname: newName });
           await delay(WRITE_DELAY);
@@ -809,7 +817,7 @@ async function organizeEpubFiles() {
         const fileKey = `${currentFileName}|${file.size}`;
 
         if (seenFiles.has(fileKey)) {
-          results.logs.push(`${progress} 🔄 Duplicado detectado: "${currentFileName}"`);
+          log(`🔄 Duplicado detectado: "${currentFileName}"`);
 
           if (!folderCache.has('Duplicados')) {
             const dupFolder = await createFolderIfNotExists(SOURCE_FOLDER_ID, 'Duplicados');
@@ -831,7 +839,7 @@ async function organizeEpubFiles() {
 
         // PASSO 3: CATEGORIZAÇÃO
         const category = categorizeFile(currentFileName);
-        results.logs.push(`${progress} 📖 "${currentFileName}" → ${category}`);
+        log(`📖 "${currentFileName}" → ${category}`);
 
         // PASSO 4: MOVIMENTAÇÃO
         if (!folderCache.has(category)) {
@@ -854,7 +862,9 @@ async function organizeEpubFiles() {
           file: file.name,
           error: error.message
         });
-        results.logs.push(`${progress} ❌ ERRO: ${file.name} - ${error.message}`);
+        const time = new Date().toLocaleTimeString('pt-BR');
+        console.error(`[${time}] ${progress} ❌ ERRO: ${file.name} - ${error.message}`);
+        results.logs.push(`[${time}] ${progress} ❌ ERRO: ${file.name} - ${error.message}`);
       }
     }
 
