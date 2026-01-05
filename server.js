@@ -65,6 +65,7 @@ const CATEGORY_MAPPING = {
     "sapir englard", "kim richardson", "p.c. cast", "serena valentino",
     "charlaine harris", "richelle mead", "l.j. smith", "steven erikson",
     "mark lawrence", "garth nix", "jonathan stroud", "rf kuang",
+    "maya motayne", "lesley livingston", "sara holland", "grace draven", "genevieve cogman",
     // Autores brasileiros
     "eduardo spohr", "raphael draccon", "affonso solano", "ana lúcia merege",
     "andre vianco", "leonel caldela", "felipe castilho", "tiago toy",
@@ -162,7 +163,12 @@ const CATEGORY_MAPPING = {
     "temptation", "tentacao", "promise", "promessa", "forever", "sempre",
     "dream", "sonho", "viscount", "visconde", "earl", "conde", "marquess", "marques",
     "scandal", "escandalo", "affair", "caso", "lover", "amante", "wife", "esposa",
-    "husband", "marido"
+    "husband", "marido",
+    "jaimie roberts", "kylie scott", "l. a. cotton", "megan crewe", "ilsa madden-mills",
+    "kate stewart", "raven kennedy", "laylah roberts", "brenda rothert", "cheryl holt",
+    "ruby dixon", "suzanne enoch", "francine rivers", "elena ferrante",
+    "anders grey", "erin mccarthy", "cambria hebert", "amelia wilde", "aly martinez",
+    "chelle bliss", "veronica eden", "r. scarlett", "natalia jasper", "crystal ash"
   ],
 
   // === JOVEM ADULTO (YA) ===
@@ -229,7 +235,10 @@ const CATEGORY_MAPPING = {
     "murder", "assassinato", "kill", "morte", "dead", "morto", "death",
     "girl", "garota", "gone", "desaparecida", "lies", "mentiras",
     "truth", "verdade", "detective", "detetive", "crime", "investigation", "investigacao",
-    "blood", "sangue", "bones", "ossos", "grave", "tumulo", "nightmare", "pesadelo"
+    "blood", "sangue", "bones", "ossos", "grave", "tumulo", "nightmare", "pesadelo",
+    "agente", "espiao", "missao", "spy", "agent", "mission", "conspiracy", "conspiracao",
+    "victim", "vitima", "suspect", "suspeito", "hunt", "cacada", "shooter", "atirador",
+    "sniper", "killer", "psicopata", "psychopath", "hostage", "refem"
   ],
 
   // === POLICIAL E MISTÉRIO ===
@@ -354,7 +363,8 @@ const CATEGORY_MAPPING = {
     "william shakespeare", "thomas mann", "alexandre dumas", "hermann hesse",
     "umberto eco", "carlos ruiz zafon", "liev tolstoi", "tolstoi",
     "mia couto", "valter hugo mae", "haruki murakami", "charles bukowski",
-    "marcel proust", "james joyce", "homero", "dante alighieri"
+    "marcel proust", "james joyce", "homero", "dante alighieri",
+    "irvine welsh"
   ],
 
   // === NEGÓCIOS E ECONOMIA ===
@@ -374,8 +384,7 @@ const CATEGORY_MAPPING = {
     "economia", "lideranca empresarial", "vendas", "estrategia",
     "business", "management", "leadership", "money", "investing",
     "finance", "sales", "strategy", "brand", "marca", "startup",
-    "mike michalowicz", "profit first", "lucro primeiro", "mark wolynn",
-    "sepultura", "biography", "music", "banda"
+    "mike michalowicz", "profit first", "lucro primeiro"
   ],
 
   // === RELIGIÃO E ESPIRITUALIDADE ===
@@ -574,40 +583,44 @@ function normalizeString(str) {
 // Mapeamento de Fallback (apenas se não cair em nenhuma categoria acima)
 const FALLBACK_MAPPING = {
   "Literatura Estrangeira": [
-    "the", "and", "of", "to", "in", "is", "you", "that", "it", "he", "was", "for", "on", "are", "as", "with", "his", "they", "i", "at", "be", "this", "have", "from", "or", "one", "had", "by", "word", "but", "not", "what", "all", "were", "we", "when", "your", "can", "said", "there", "use", "an", "each", "which", "she", "do", "how", "their", "if", "will", "up", "other", "about", "out", "many", "then", "them", "these", "so", "some", "her", "would", "make", "like", "him", "into", "time", "has", "look", "two", "more", "write", "go", "see", "number", "no", "way", "could", "people", "my", "than", "first", "water", "been", "call", "who", "oil", "its", "now", "find",
+    "the", "a", "and", "of", "to", "in", "is", "you", "that", "it", "he", "was", "for", "on", "are", "as", "with", "his", "they", "i", "at", "be", "this", "have", "from", "or", "one", "had", "by", "word", "but", "not", "what", "all", "were", "we", "when", "your", "can", "said", "there", "use", "an", "each", "which", "she", "do", "how", "their", "if", "will", "up", "other", "about", "out", "many", "then", "them", "these", "so", "some", "her", "would", "make", "like", "him", "into", "time", "has", "look", "two", "more", "write", "go", "see", "number", "no", "way", "could", "people", "my", "than", "first", "water", "been", "call", "who", "oil", "its", "now", "find",
     "story", "life", "man", "woman", "world", "love", "night", "day", "house", "home", "father", "mother", "brother", "sister", "death", "war", "god", "king", "queen", "president", "city", "country", "town", "street", "road", "school", "book", "best", "new", "great", "high", "old", "big", "small", "large", "young", "long", "little", "good", "bad", "black", "white", "red", "blue"
   ],
   "Literatura Brasileira": [
     "que", "de", "e", "do", "da", "em", "um", "para", "com", "nao", "uma", "os", "no", "se", "na", "por", "mais", "as", "dos", "como", "mas", "ao", "ele", "das", "tem", "seu", "sua", "ou", "quando", "muito", "nos", "ja", "eu", "tambem", "so", "pelo", "pela", "ate", "isso", "ela", "entre", "depois", "sem", "mesmo", "aos", "ter", "seus", "quem", "nas", "me", "esse", "eles", "estao", "voce", "tinha", "foram", "essa", "num", "nem", "suas", "meu", "as", "minha", "tem", "numa", "pelos", "elas", "qual", "nos", "lhe", "deles", "essas", "esses", "pelas", "este", "dele", "tu", "te", "voces", "vos", "lhes", "meus", "minhas", "teu", "tua", "teus", "tuas", "nosso", "nossa", "nossos", "nossas", "dela", "delas", "esta", "estes", "estas", "aquele", "aquela", "aqueles", "aquelas", "isto", "aquilo", "estou", "esta", "estamos", "estao", "estive", "esteve", "estivemos", "estiveram", "estava", "estavamos", "estavam", "estivera", "estiveramos", "estiveram", "haja", "hajamos", "hajam", "houve", "houvemos", "houveram", "houvera", "houveramos", "houveram", "quis", "quisemos", "quiseram", "quisa", "quisamos", "quisam", "tiver", "tivermos", "tiverem", "haja", "hajamos", "hajam", "houver", "houvermos", "houverem",
-    "vida", "amor", "casa", "tempo", "mundo", "homem", "mulher", "crianca", "cidade", "pais", "mae", "pai", "irmao", "irma", "amigo", "trabalho", "dinheiro", "historia", "livro", "novo", "bom", "grande", "pequeno", "velho", "jovem", "alto", "baixo", "negro", "branco", "vermelho", "azul"
-  ]
+    "o", "a", "vida", "amor", "casa", "tempo", "mundo", "homem", "mulher", "crianca", "cidade", "pais", "mae", "pai", "irmao", "irma", "amigo", "trabalho", "dinheiro", "historia", "livro", "novo", "bom", "grande", "pequeno", "velho", "jovem", "alto", "baixo", "negro", "branco", "vermelho", "azul"
+  ],
+  "Psicologia": ["mark wolynn"],
+  "Biografias": ["sepultura", "aliester crowley"]
 };
 
 function categorizeFile(filename) {
   const normalized = normalizeString(filename);
+  const paddedNormalized = ` ${normalized} `;
 
   let bestCategory = 'Outros';
-  let maxMatches = 0;
+  let maxScore = 0;
 
   // 1. Primary Mapping
   for (const [category, keywords] of Object.entries(CATEGORY_MAPPING)) {
     if (category === 'Outros') continue;
 
-    let matches = 0;
+    let score = 0;
     for (const keyword of keywords) {
       const normalizedKeyword = normalizeString(keyword);
-      if (normalized.includes(normalizedKeyword)) {
-        matches++;
+      const paddedKeyword = ` ${normalizedKeyword} `;
+
+      if (paddedNormalized.includes(paddedKeyword)) {
+        // Weight: Multi-word (Author/Title) = 3 pts, Single-word (Keyword) = 1 pt
+        score += normalizedKeyword.includes(' ') ? 3 : 1;
       }
     }
 
-    if (matches > maxMatches) {
-      maxMatches = matches;
+    if (score > maxScore) {
+      maxScore = score;
       bestCategory = category;
-    } else if (matches === maxMatches && matches > 0) {
-      if (category < bestCategory) {
-        bestCategory = category;
-      }
+    } else if (score === maxScore && score > 0) {
+      if (category < bestCategory) bestCategory = category;
     }
   }
 
@@ -617,7 +630,7 @@ function categorizeFile(filename) {
     for (const [category, keywords] of Object.entries(FALLBACK_MAPPING)) {
       let matches = 0;
       for (const keyword of keywords) {
-        if (normalized.includes(keyword)) {
+        if (paddedNormalized.includes(` ${keyword} `)) {
           matches++;
         }
       }
