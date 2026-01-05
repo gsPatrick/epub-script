@@ -28,109 +28,275 @@ let lastResults = null;
 // MAPEAMENTO DE CATEGORIAS
 // ============================================================
 const CATEGORY_MAPPING = {
-  "Artes, Cinema e Fotografia": [
-    "arte", "cinema", "fotografia", "pintura", "escultura",
-    "musica", "teatro", "danca", "filme", "diretor"
+  // === FANTASIA ===
+  "Fantasia": [
+    // Autores
+    "sarah j. maas", "holly black", "leigh bardugo", "brandon sanderson",
+    "cassandra clare", "laini taylor", "victoria aveyard", "patrick rothfuss",
+    "robin hobb", "joe abercrombie", "george r.r. martin", "r.r. martin",
+    "trudi canavan", "andrzej sapkowski", "robert jordan", "terry goodkind",
+    "terry pratchett", "neil gaiman", "ursula k. le guin", "j.r.r. tolkien",
+    "c.s. lewis", "diana wynne jones", "juliet marillier", "maria v. snyder",
+    "jennifer l. armentrout", "rebecca yarros", "maggie stiefvater", "v.e. schwab",
+    "naomi novik", "samantha shannon", "tomi adeyemi", "sabaa tahir",
+    "brigid kemmerer", "kerri maniscalco", "renee ahdieh", "leigh bardugo",
+    "marissa meyer", "kristin cashore", "rae carson", "maria lu",
+    "shelby mahurin", "olivie blake", "elizabeth lim", "alexandra bracken",
+    // Séries
+    "corte de espinhos", "trono de vidro", "crescent city", "casa de terra",
+    "povo do ar", "sombra e osso", "six of crows", "nascidos da bruma",
+    "stormlight", "roda do tempo", "cronicas de gelo e fogo", "game of thrones",
+    "instrumentos mortais", "cacadores de sombras", "dark artifices",
+    "grisha", "rei corvo", "quarta asa", "chama de ferro", "empyrean",
+    // Palavras-chave
+    "dragao", "magia", "feiticeira", "bruxo", "elfo", "reino", "trono",
+    "coroa", "principe", "princesa", "rei", "rainha", "cavaleiro", "espada"
   ],
 
-  "Autoajuda": [
-    "autoajuda", "motivacao", "superacao", "habitos", "sucesso",
-    "produtividade", "mindset", "crescimento", "desenvolvimento", "inspiracao"
+  // === ROMANCE ===
+  "Romance": [
+    // Autores contemporâneos
+    "colleen hoover", "anna todd", "nicholas sparks", "sally thorne",
+    "christina lauren", "ali hazelwood", "emily henry", "tessa bailey",
+    "helena hunting", "penelope douglas", "elle kennedy", "lj shen",
+    "monica murphy", "brittainy c. cherry", "mia sheridan", "tillie cole",
+    "kristen callihan", "meghan quinn", "melanie harlow", "kate canterbary",
+    "claire kingsley", "penny reid", "mariana zapata", "kristen ashley",
+    "devney perry", "elsie silver", "sara cate", "jessa kane", "alexa riley",
+    // Autores históricos
+    "julia quinn", "lisa kleypas", "eloisa james", "sarah maclean",
+    "tessa dare", "lorraine heath", "mary balogh", "courtney milan",
+    "joanna shupe", "lenora bell", "eva leigh", "grace burrowes",
+    "elizabeth hoyt", "madeline hunter", "sabrina jeffries", "sophie jordan",
+    "jennifer ashley", "anna campbell", "stephanie laurens", "meredith duran",
+    // Séries
+    "bridgertons", "ravenels", "wallflowers", "hathaways", "spindle cove",
+    "duque e eu", "visconde", "condessa", "marquês", "lorde", "lady",
+    // Palavras-chave
+    "romance", "amor", "paixao", "seducao", "casamento", "noiva", "duque"
   ],
 
-  "Bebês e Crianças": [
-    "bebe", "crianca", "infantil", "pediatria", "maternidade",
-    "gravidez", "educacao infantil", "puericultura", "amamentacao", "desenvolvimento infantil"
+  // === SUSPENSE E THRILLER ===
+  "Suspense e Thriller": [
+    // Autores
+    "gillian flynn", "paula hawkins", "ruth ware", "a.j. finn",
+    "b.a. paris", "shari lapena", "karin slaughter", "lisa gardner",
+    "tess gerritsen", "michael connelly", "lee child", "harlan coben",
+    "james patterson", "dan brown", "john grisham", "jo nesbo",
+    "stieg larsson", "camilla lackberg", "lars kepler", "jeffery deaver",
+    "sebastian fitzek", "pierre lemaitre", "robert harris", "tom clancy",
+    // Palavras-chave
+    "thriller", "suspense", "assassino", "crime", "detetive", "investigacao",
+    "policial", "fbi", "serial killer", "misterio", "enigma", "morte"
   ],
 
-  "Biografias e Histórias Reais": [
-    "biografia", "autobiografia", "memorias", "historia real", "vida",
-    "trajetoria", "testemunho", "relato", "historia verdadeira", "perfil"
+  // === HORROR ===
+  "Horror": [
+    // Autores
+    "stephen king", "richard bachman", "clive barker", "dean koontz",
+    "peter straub", "shirley jackson", "h.p. lovecraft", "edgar allan poe",
+    "joe hill", "paul tremblay", "grady hendrix", "josh malerman",
+    "riley sager", "rachel harrison", "silvia moreno-garcia", "t. kingfisher",
+    // Palavras-chave
+    "horror", "terror", "assombracao", "fantasma", "monstro", "vampiro",
+    "demonio", "maldito", "pesadelo", "sobrenatural", "arrepiante"
   ],
 
-  "Ciências e Engenharia": [
-    "ciencia", "engenharia", "fisica", "quimica", "biologia",
-    "matematica", "tecnologia", "pesquisa", "experimento", "astronomia"
+  // === FICÇÃO CIENTÍFICA ===
+  "Ficção Científica": [
+    // Autores
+    "frank herbert", "isaac asimov", "arthur c. clarke", "philip k. dick",
+    "ray bradbury", "ursula k. le guin", "william gibson", "dan simmons",
+    "orson scott card", "ann leckie", "n.k. jemisin", "liu cixin",
+    "andy weir", "blake crouch", "margaret atwood", "cixin liu",
+    "aldous huxley", "george orwell", "h.g. wells", "jules verne",
+    // Séries
+    "duna", "fundacao", "2001", "expanse", "three body problem",
+    // Palavras-chave
+    "ficcao cientifica", "sci-fi", "espacial", "futuro", "distopia",
+    "inteligencia artificial", "robos", "alienigena", "galaxia"
   ],
 
-  "Computação, Informática e Mídias Digitais": [
-    "programacao", "software", "computador", "internet", "digital",
-    "codigo", "algoritmo", "desenvolvimento", "web", "tecnologia da informacao"
-  ],
-
-  "Culinária e Gastronomia": [
-    "culinaria", "receita", "gastronomia", "cozinha", "chef",
-    "alimento", "comida", "prato", "ingrediente", "sabor"
-  ],
-
-  "Direito": [
-    "direito", "lei", "juridico", "advocacia", "justica",
-    "tribunal", "codigo", "constitucional", "penal", "civil"
-  ],
-
-  "Educação, Referência e Didáticos": [
-    "educacao", "ensino", "didatico", "pedagogia", "aprendizagem",
-    "escola", "professor", "curso", "apostila", "guia"
-  ],
-
-  "Esportes, Lazer e Viagens": [
-    "esporte", "viagem", "turismo", "aventura", "lazer",
-    "futebol", "corrida", "destino", "guia de viagem", "fitness"
-  ],
-
-  "Fantasia, Horror e Ficção Científica": [
-    "fantasia", "magia", "dragao", "elfo", "sci-fi",
-    "ficcao cientifica", "horror", "terror", "monstro", "espacial"
-  ],
-
-  "HQs, Mangás e Graphic Novels": [
-    "hq", "quadrinho", "manga", "comic", "graphic novel",
-    "gibi", "heroi", "super-heroi", "anime", "marvel"
-  ],
-
-  "Inglês e Outras Línguas": [
-    "ingles", "idioma", "lingua", "traducao", "gramatica",
-    "vocabulario", "conversacao", "fluencia", "language", "dictionary"
-  ],
-
+  // === JOVEM ADULTO (YA) ===
   "Jovem Adulto": [
-    "jovem adulto", "young adult", "adolescente", "teen", "juventude",
-    "coming of age", "distopia jovem", "romance jovem", "ya", "novo adulto"
+    // Autores
+    "suzanne collins", "veronica roth", "marie lu", "rainbow rowell",
+    "john green", "jenny han", "becky albertalli", "adam silvera",
+    "angie thomas", "nicola yoon", "stephanie perkins", "morgan matson",
+    "kasie west", "jennifer niven", "gayle forman", "colleen houck",
+    "tahereh mafi", "ally condie", "lauren oliver", "kiera cass",
+    "kami garcia", "margie stohl", "sara shepard", "richelle mead",
+    "rachel caine", "rachel hawkins", "melissa de la cruz",
+    // Séries
+    "jogos vorazes", "divergente", "selecao", "maze runner", "estilhaca-me",
+    "pretty little liars", "voltando a virgin river", "terra de historias",
+    "crepusculo", "twilight", "fallen", "hush hush",
+    // Palavras-chave
+    "young adult", "teen", "adolescente", "escola", "prova", "revolucao"
   ],
 
-  "Literatura e Ficção": [
-    "romance", "ficcao", "literatura", "conto", "novela",
-    "prosa", "narrativa", "classico", "contemporaneo", "historia"
+  // === AUTOAJUDA E DESENVOLVIMENTO PESSOAL ===
+  "Autoajuda": [
+    // Autores
+    "jordan peterson", "brene brown", "simon sinek", "james clear",
+    "cal newport", "ryan holiday", "mark manson", "dale carnegie",
+    "napoleon hill", "stephen covey", "tony robbins", "robin sharma",
+    "paulo vieira", "augusto cury", "flavio augusto", "lair ribeiro",
+    "gustavo cerbasi", "daniel goleman", "carol dweck", "gretchen rubin",
+    "marie kondo", "jay shetty", "mel robbins", "brendon burchard",
+    // Palavras-chave
+    "autoajuda", "habitos", "produtividade", "sucesso", "mindset",
+    "motivacao", "superacao", "lideranca", "inteligencia emocional",
+    "felicidade", "proposito", "mentalidade", "realizacao"
   ],
 
+  // === LITERATURA CLÁSSICA ===
+  "Literatura Clássica": [
+    // Autores
+    "machado de assis", "jose saramago", "jorge amado", "eca de queiros",
+    "fernando pessoa", "clarice lispector", "jane austen", "charles dickens",
+    "leo tolstoy", "fyodor dostoevsky", "fiodor dostoievski", "dostoievski",
+    "franz kafka", "virginia woolf", "ernest hemingway", "f. scott fitzgerald",
+    "oscar wilde", "mark twain", "victor hugo", "honore de balzac",
+    "gustave flaubert", "stendhal", "emily bronte", "charlotte bronte",
+    "thomas hardy", "george eliot", "henry james", "herman melville",
+    "nathaniel hawthorne", "edgar allan poe",
+    // Palavras-chave
+    "classico", "seculo xix", "seculo xviii", "literatura"
+  ],
+
+  // === NEGÓCIOS E ECONOMIA ===
   "Negócios e Economia": [
-    "negocios", "economia", "empresarial", "gestao", "marketing",
-    "financas", "empreendedorismo", "administracao", "mercado", "investimento"
+    // Autores
+    "peter drucker", "robert kiyosaki", "warren buffett", "ray dalio",
+    "nassim taleb", "benjamin graham", "phil knight", "reed hastings",
+    "eric ries", "peter thiel", "tim ferriss", "gary vaynerchuk",
+    "seth godin", "malcolm gladwell", "daniel kahneman", "richard thaler",
+    "walter isaacson", "ben horowitz", "niall ferguson", "michael porter",
+    // Palavras-chave
+    "negocios", "economia", "empreendedorismo", "startups", "investimento",
+    "financas", "marketing", "gestao", "lideranca empresarial", "vendas",
+    "estrategia", "inovacao", "dinheiro", "riqueza", "bolsa"
   ],
 
+  // === RELIGIÃO E ESPIRITUALIDADE ===
   "Religião e Espiritualidade": [
-    "religiao", "fe", "deus", "espiritualidade", "biblia",
-    "igreja", "oracao", "meditacao", "espiritual", "sagrado"
+    // Autores
+    "c.s. lewis", "timothy keller", "max lucado", "joyce meyer",
+    "john piper", "augusto cury", "padre marcelo rossi", "papa francisco",
+    "dalai lama", "thich nhat hanh", "eckhart tolle", "deepak chopra",
+    "paulo coelho", "allan kardec", "chico xavier", "zibia gasparetto",
+    "monja coen", "osho", "richard rohr", "thomas merton",
+    // Palavras-chave
+    "biblia", "deus", "jesus", "espirito", "fe", "oracao", "igreja",
+    "evangelico", "catolico", "espirita", "budismo", "meditacao",
+    "espiritualidade", "alma", "karma", "zen", "patristica"
   ],
 
-  "Saúde, Emagrecimento e Bem-Estar": [
-    "saude", "emagrecimento", "dieta", "bem-estar", "nutricao",
-    "exercicio", "corpo", "medicina", "tratamento", "cura"
+  // === HISTÓRIA ===
+  "História": [
+    // Autores
+    "yuval noah harari", "laurentino gomes", "eduardo bueno", "mary del priore",
+    "boris fausto", "lilia schwarcz", "antony beevor", "ian kershaw",
+    "max hastings", "dan jones", "tom holland", "simon sebag montefiore",
+    "niall ferguson", "jared diamond", "eric hobsbawm", "fernand braudel",
+    // Palavras-chave
+    "historia", "guerra mundial", "segunda guerra", "primeira guerra",
+    "imperio", "revolucao", "civilizacao", "antiguidade", "medieval",
+    "brasil colonia", "1808", "1822", "1889", "1964"
   ],
 
-  "Sexualidade e Relacionamentos": [
-    "sexo", "relacionamento", "amor", "casal", "intimidade",
-    "namoro", "casamento", "paixao", "sexualidade", "parceiro"
+  // === FILOSOFIA ===
+  "Filosofia": [
+    // Autores
+    "seneca", "marco aurelio", "epicteto", "platao", "aristoteles",
+    "nietzsche", "schopenhauer", "kant", "hegel", "descartes",
+    "sartre", "camus", "foucault", "deleuze", "slavoj zizek",
+    "byung-chul han", "mario sergio cortella", "leandro karnal",
+    "clóvis de barros filho", "luiz felipe ponde",
+    // Palavras-chave
+    "filosofia", "estoicismo", "existencialismo", "metafisica",
+    "etica", "moral", "pensamento", "razao", "reflexao"
   ],
 
-  "Sociologia e Ciências Sociais": [
-    "sociologia", "sociedade", "social", "antropologia", "cultura",
-    "politica", "filosofia", "historia", "psicologia social", "comportamento"
+  // === PSICOLOGIA ===
+  "Psicologia": [
+    // Autores
+    "sigmund freud", "carl jung", "viktor frankl", "irvin yalom",
+    "carl rogers", "b.f. skinner", "albert bandura", "daniel goleman",
+    "martin seligman", "carol dweck", "mihaly csikszentmihalyi",
+    // Palavras-chave
+    "psicologia", "psicanalise", "terapia", "mente", "comportamento",
+    "ansiedade", "depressao", "trauma", "inconsciente", "cognitivo"
   ],
 
-  "Suspense, Policial e Thriller": [
-    "suspense", "thriller", "policial", "crime", "detetive",
-    "investigacao", "misterio", "assassinato", "noir", "acao"
+  // === POLICIAL ===
+  "Policial e Mistério": [
+    // Autores
+    "agatha christie", "arthur conan doyle", "sherlock holmes", "hercule poirot",
+    "miss marple", "andrea camilleri", "robert galbraith", "richard osman",
+    "louise penny", "peter robinson", "ian rankin", "michael connelly",
+    // Séries
+    "cormoran strike", "mortal", "j.d. robb", "nora roberts",
+    // Palavras-chave
+    "detetive", "investigacao", "crime", "assassinato", "mistério",
+    "policia", "evidencia", "caso", "pista"
+  ],
+
+  // === ROMANCE ERÓTICO ===
+  "Romance Erótico": [
+    // Autores
+    "e.l. james", "sylvia day", "meredith wild", "anna zaires",
+    "pepper winters", "kitty thomas", "sierra simone", "alexa riley",
+    // Séries e palavras-chave
+    "cinquenta tons", "fifty shades", "dark romance", "erotico",
+    "bdsm", "submissa", "dominador", "proibido", "pecado"
+  ],
+
+  // === HQs, MANGÁS E GRAPHIC NOVELS ===
+  "HQs e Mangás": [
+    "hq", "manga", "graphic novel", "quadrinho", "comic", "marvel",
+    "dc comics", "batman", "spider-man", "x-men", "avengers",
+    "naruto", "one piece", "attack on titan", "death note",
+    "turma da monica", "mauricio de sousa"
+  ],
+
+  // === INFANTIL ===
+  "Infantil": [
+    // Autores
+    "roald dahl", "dr. seuss", "julia donaldson", "ruth stiles gannett",
+    "monteiro lobato", "sitio do picapau", "ana maria machado",
+    "ruth rocha", "ziraldo", "mary pope osborne",
+    // Palavras-chave
+    "infantil", "crianca", "fabula", "conto de fadas", "disney",
+    "principe", "principezinho", "pequeno principe"
+  ],
+
+  // === SAÚDE E BEM-ESTAR ===
+  "Saúde e Bem-Estar": [
+    // Palavras-chave
+    "saude", "medicina", "dieta", "nutricao", "emagrecimento",
+    "exercicio", "fitness", "yoga", "corpo", "alimentacao",
+    "jejum", "low carb", "receitas saudaveis"
+  ],
+
+  // === DIREITO ===
+  "Direito": [
+    "direito", "juridico", "lei", "codigo civil", "codigo penal",
+    "constituicao", "tribunal", "advocacia", "processo", "jurisprudencia"
+  ],
+
+  // === CULINÁRIA ===
+  "Culinária": [
+    "receita", "culinaria", "gastronomia", "cozinha", "chef",
+    "bolo", "sobremesa", "doce", "salgado", "panelinha"
+  ],
+
+  // === CIÊNCIAS ===
+  "Ciências": [
+    "fisica", "quimica", "biologia", "matematica", "astronomia",
+    "neurociencia", "evolucao", "darwin", "einstein", "hawking",
+    "universo", "cosmos", "cerebro", "dna", "genes"
   ],
 
   "Outros": []
@@ -428,19 +594,29 @@ async function analyzeAllFiles() {
 }
 
 // Prompt otimizado (separado da lista)
-const CLASSIFICATION_PROMPT = `Classifique cada arquivo EPUB em UMA categoria:
+const CLASSIFICATION_PROMPT = `TAREFA: Para cada arquivo EPUB listado abaixo, determine a categoria correta.
 
-CATEGORIAS:
-1-Fantasia, 2-Romance, 3-Jovem Adulto, 4-Ficção Científica, 5-Horror/Terror, 6-Suspense/Thriller, 7-Policial/Mistério, 8-Literatura Clássica, 9-Literatura Contemporânea, 10-Autoajuda, 11-Biografias, 12-Negócios/Economia, 13-Religião/Espiritualidade, 14-Saúde/Bem-Estar, 15-Ciências, 16-Computação/Tecnologia, 17-HQs/Mangás, 18-Infantil, 19-Erótico, 20-Outros
+CATEGORIAS DISPONÍVEIS:
+Fantasia, Romance, Jovem Adulto, Ficção Científica, Horror, Suspense, Policial, Literatura Clássica, Literatura Contemporânea, Autoajuda, Biografias, Negócios, Religião, Saúde, Ciências, Computação, HQs e Mangás, Infantil, Erótico, Outros
 
-REGRAS:
-- Sarah J. Maas, Holly Black, Leigh Bardugo = Fantasia
-- Anna Todd, Colleen Hoover = Romance
-- Suzanne Collins, Victoria Aveyard = Jovem Adulto
-- Pesquise autores desconhecidos na internet
+DICAS DE AUTORES:
+- Sarah J. Maas, Holly Black, Leigh Bardugo, Brandon Sanderson = Fantasia
+- Colleen Hoover, Anna Todd, Nicholas Sparks, Tessa Dare = Romance  
+- Suzanne Collins, Victoria Aveyard, Veronica Roth = Jovem Adulto
+- Stephen King = Horror
+- Agatha Christie = Policial
 
-RESPONDA APENAS com JSON:
-{"arquivo.epub":"Categoria",...}`;
+FORMATO DE RESPOSTA OBRIGATÓRIO:
+Retorne APENAS um JSON válido assim:
+{
+  "nome_do_arquivo.epub": "Categoria",
+  "outro_arquivo.epub": "Categoria"
+}
+
+NÃO escreva explicações. APENAS o JSON.
+Pesquise na internet autores que você não conhece.
+
+LISTA DE ARQUIVOS PARA CLASSIFICAR:`;
 
 // ============================================================
 // SERVIDOR EXPRESS
