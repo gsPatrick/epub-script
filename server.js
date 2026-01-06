@@ -902,6 +902,62 @@ async function analyzeAllFiles() {
   };
 }
 
+// ============================================================
+// FUNÇÃO DE VARREDURA (SCAN)
+// ============================================================
+
+async function scanStructure() {
+  console.log('🔍 Iniciando varredura de estrutura...');
+
+  // 1. Listar raiz
+  const rootData = await listFolder(SOURCE_FOLDER_ID);
+  const rootContents = rootData.contents || [];
+
+  // 2. Separar arquivos soltos e pastas
+  const rootFiles = rootContents.filter(item => !item.isfolder);
+  const rootFolders = rootContents.filter(item => item.isfolder);
+
+  const stats = {
+    rootFileCount: rootFiles.length,
+    rootFolderCount: rootFolders.length,
+    totalCategorized: 0,
+    categories: [],
+    timestamp: new Date()
+  };
+
+  // 3. Escanear cada pasta
+  for (const folder of rootFolders) {
+    try {
+      const folderData = await listFolder(folder.folderid);
+      const filesCount = (folderData.contents || []).filter(f => !f.isfolder).length;
+
+      stats.categories.push({
+        name: folder.name,
+        count: filesCount,
+        id: folder.folderid
+      });
+
+      stats.totalCategorized += filesCount;
+
+    } catch (error) {
+      console.error(`Erro ao escanear pasta ${folder.name}:`, error.message);
+      stats.categories.push({
+        name: folder.name,
+        count: -1, // Indica erro
+        error: error.message
+      });
+    }
+
+    // Pequeno delay para evitar rate limit
+    await delay(100);
+  }
+
+  // Ordenar categorias por contagem (maior para menor)
+  stats.categories.sort((a, b) => b.count - a.count);
+
+  return stats;
+}
+
 // Prompt otimizado (separado da lista)
 const CLASSIFICATION_PROMPT = `TAREFA: Para cada arquivo EPUB listado abaixo, determine a categoria correta.
 
@@ -1039,6 +1095,9 @@ app.get('/', (req, res) => {
             </a>
             <a href="/analyze" class="btn" style="background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);">
               📊 Gerar Análise (Markdown)
+            </a>
+            <a href="/scan" class="btn" style="background: linear-gradient(135deg, #f1c40f 0%, #d35400 100%);">
+              🔍 Varredura de Verificação
             </a>
             <a href="/logout" class="btn btn-danger">Desconectar</a>
           </div>
@@ -1299,6 +1358,138 @@ app.get('/analyze', async (req, res) => {
     `);
   } catch (error) {
     res.send('<h1>Erro</h1><p>' + error.message + '</p><a href="/">Voltar</a>');
+  }
+});
+
+// Varredura de Verificação
+app.get('/scan', async (req, res) => {
+  if (!authToken) {
+    return res.redirect('/');
+  }
+
+  try {
+    const stats = await scanStructure();
+
+    res.send(`
+      <!DOCTYPE html>
+      <html lang="pt-BR">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Relatório de Varredura - pCloud</title>
+        <style>
+          * { box-sizing: border-box; margin: 0; padding: 0; }
+          body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #fff;
+            padding: 20px;
+          }
+          .container { max-width: 1000px; margin: 0 auto; }
+          h1 { text-align: center; margin-bottom: 30px; color: #f1c40f; }
+          .card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+          }
+          .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+          }
+          .stat-box {
+            background: #0a0a0f;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+          }
+          .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 10px 0;
+          }
+          .stat-label { font-size: 14px; opacity: 0.7; }
+          .danger { color: #ff4444; border-color: #ff4444; }
+          .success { color: #00ff88; border-color: #00ff88; }
+          .warning { color: #f1c40f; border-color: #f1c40f; }
+          
+          table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+          th, td { padding: 15px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+          th { color: #f1c40f; }
+          tr:hover { background: rgba(255,255,255,0.05); }
+          
+          .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-top: 20px;
+          }
+          .btn:hover { background: rgba(255,255,255,0.2); }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <h1>🔍 Relatório de Varredura</h1>
+          
+          <div class="card">
+            <h2>Resumo Geral</h2>
+            <div class="summary-grid">
+              <div class="stat-box ${stats.rootFileCount > 0 ? 'danger' : 'success'}">
+                <div class="stat-number">${stats.rootFileCount}</div>
+                <div class="stat-label">Arquivos Restantes na Raiz</div>
+                ${stats.rootFileCount > 0 ? '<div style="font-size: 12px; margin-top: 5px;">⚠️ Devem ser movidos</div>' : ''}
+              </div>
+              
+              <div class="stat-box success">
+                <div class="stat-number">${stats.totalCategorized}</div>
+                <div class="stat-label">Arquivos Organizados</div>
+              </div>
+              
+              <div class="stat-box warning">
+                <div class="stat-number">${stats.categories.length}</div>
+                <div class="stat-label">Categorias Criadas</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>📁 Detalhes por Pasta</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Nome da Pasta</th>
+                  <th>Arquivos Contidos</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${stats.categories.map(cat => `
+                  <tr>
+                    <td>📁 ${cat.name}</td>
+                    <td><strong>${cat.count === -1 ? 'Erro' : cat.count}</strong></td>
+                    <td>${cat.count > 0 ? '✅ Contém arquivos' : '⚠️ Vazia'}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+            
+            <a href="/" class="btn">← Voltar ao Início</a>
+          </div>
+        </div>
+      </body>
+      </html>
+    `);
+
+  } catch (error) {
+    res.send(`<h1>Erro</h1><p>${error.message}</p><a href="/">Voltar</a>`);
   }
 });
 
